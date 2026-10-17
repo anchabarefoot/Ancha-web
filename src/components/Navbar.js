@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const LINKS = [
-  { to: '/vivi-ancha',  label: 'Viví anCHA' },
+  { to: '/vivi-ancha',  label: 'Vivi anCHA' },
   { to: '/maiten',      label: 'Maitén' },
   { to: '/mara',        label: 'Mara' },
   { to: '/calden',      label: 'Caldén' },

@@ -6,6 +6,7 @@ import './Navbar.css';
 const LINKS = [
   { to: '/vivi-ancha',  label: 'VIVI anCHA' },
   { to: '/maiten',      label: 'Maitén' },
+  { to: '/manso',       label: 'Manso' },
   { to: '/mara',        label: 'Mara' },
   { to: '/calden',      label: 'Caldén' },
   { to: '/zonda',       label: 'Zonda' },

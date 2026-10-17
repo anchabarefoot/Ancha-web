@@ -7,6 +7,7 @@ import FloatingCTA from './components/FloatingCTA';
 import Home from './pages/Home';
 import ViviAncha from './pages/ViviAncha';
 import Maiten from './pages/Maiten';
+import Manso from './pages/Manso';
 import Mara from './pages/Mara';
 import Calden from './pages/Calden';
 import Zonda from './pages/Zonda';
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/vivi-ancha" element={<ViviAncha />} />
             <Route path="/maiten" element={<Maiten />} />
+            <Route path="/manso" element={<Manso />} />
             <Route path="/mara" element={<Mara />} />
             <Route path="/calden" element={<Calden />} />
             <Route path="/zonda" element={<Zonda />} />

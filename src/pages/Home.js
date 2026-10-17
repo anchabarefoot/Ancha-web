@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard';
 import './Home.css';
 
 // Hero parallax image block
-function HeroBlock({ bg, label, sub, to, delay = 0 }) {
+function HeroBlock({ img, bg, label, sub, to, delay = 0 }) {
   const ref = useRef(null);
   const [offset, setOffset] = useState(0);
   const [hover, setHover] = useState(false);
@@ -28,6 +28,22 @@ function HeroBlock({ bg, label, sub, to, delay = 0 }) {
     setMpos({ x: ((e.clientX - rect.left) / rect.width) * 100, y: ((e.clientY - rect.top) / rect.height) * 100 });
   };
 
+  const imgStyle = img
+    ? {
+        backgroundImage: `url(${img})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        transform: hover
+          ? `scale(1.07) translate(${(mpos.x - 50) * -0.05}%, ${(mpos.y - 50) * -0.05 + offset * 0.3}px)`
+          : `scale(1.02) translateY(${offset}px)`,
+      }
+    : {
+        background: bg,
+        transform: hover
+          ? `scale(1.07) translate(${(mpos.x - 50) * -0.05}%, ${(mpos.y - 50) * -0.05 + offset * 0.3}px)`
+          : `scale(1.02) translateY(${offset}px)`,
+      };
+
   return (
     <Link
       to={to}
@@ -38,19 +54,11 @@ function HeroBlock({ bg, label, sub, to, delay = 0 }) {
       onMouseMove={handleMove}
       style={{ animationDelay: `${delay}ms` }}
     >
-      <div
-        className="hero-block__img"
-        style={{
-          background: bg,
-          transform: hover
-            ? `scale(1.07) translate(${(mpos.x - 50) * -0.05}%, ${(mpos.y - 50) * -0.05 + offset * 0.3}px)`
-            : `scale(1.02) translateY(${offset}px)`,
-        }}
-      />
+      <div className="hero-block__img" style={imgStyle} />
       <div className="hero-block__over">
         <p className="hero-block__sub">{sub}</p>
         <h2 className="hero-block__label">{label}</h2>
-        <span className="hero-block__cta">Ver todo</span>
+        <span className="hero-block__cta">Ver modelo</span>
       </div>
     </Link>
   );
@@ -76,24 +84,27 @@ export default function Home() {
       {/* ── EDITORIAL BLOCKS ── */}
       <section className="home-blocks container">
         <HeroBlock
+          img="/images/maiten-natural.jpg"
           bg="linear-gradient(145deg, #d4c4b0 0%, #b8a070 100%)"
           label="Maitén"
-          sub="Náutico · Nueva colección"
+          sub="Náutico · Cuero curtido"
           to="/maiten"
           delay={0}
         />
         <HeroBlock
+          img="/images/calden-natural.jpg"
           bg="linear-gradient(145deg, #c8b8a8 0%, #9a8070 60%, #7a6858 100%)"
-          label="Viví anCHA"
-          sub="El universo de la marca"
-          to="/vivi-ancha"
+          label="Caldén"
+          sub="Acordonado · Cuero curtido"
+          to="/calden"
           delay={80}
         />
         <HeroBlock
+          img="/images/mara-azul.jpg"
           bg="linear-gradient(145deg, #e0d4c4 0%, #c0a888 100%)"
-          label="Anchitas"
-          sub="Para los más chicos"
-          to="/anchitas"
+          label="Mara"
+          sub="Alpargata · anCHA"
+          to="/mara"
           delay={160}
         />
       </section>
@@ -112,7 +123,7 @@ export default function Home() {
             <p className="home-section__eye">Nuevos ingresos</p>
             <h2 className="home-section__title">Calzado</h2>
           </div>
-          <Link to="/calzado" className="home-section__all">Ver todo →</Link>
+          <Link to="/maiten" className="home-section__all">Ver todo →</Link>
         </div>
         <div className="home-grid home-grid--4 container">
           {newCalzado.map((p, i) => (
@@ -125,10 +136,10 @@ export default function Home() {
       <section className="home-banner">
         <div className="home-banner__img" style={{ background: 'linear-gradient(120deg, #2a2018 0%, #4a3828 60%, #3a2818 100%)' }}>
           <div className="home-banner__txt">
-            <p className="home-banner__eye">Sobre la marca</p>
+            <p className="home-banner__eye">anCHA · Caseros, Bs. As.</p>
             <h2>Aceptando lo que viene,<br /><em>dando espacio a cada forma</em></h2>
-            <p>Sin forzar. Sin apretar. Sin encajar. Creemos en habitar el presente, movernos con libertad y hacer lugar a lo que somos. Hoy. Acá. Ahora.</p>
-            <Link to="/" className="home-banner__btn">Viví anCHA</Link>
+            <p>Sin forzar. Sin apretar. Sin encajar. anCHA nace de una forma compartida de transitar la vida: con naturalidad, ligereza y libertad.</p>
+            <Link to="/vivi-ancha" className="home-banner__btn">Viví anCHA</Link>
           </div>
         </div>
       </section>

@@ -4,10 +4,14 @@ import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const LINKS = [
-  { to: '/',            label: 'Vivi anCHA' },
-  { to: '/calzado',     label: 'Calzado' },
-  { to: '/indumentaria',label: 'Indumentaria' },
-  { to: '/cambios',     label: 'Portal de cambios' },
+  { to: '/',            label: 'Viví anCHA' },
+  { to: '/calzado',     label: 'Maitén' },
+  { to: '/calzado',     label: 'Mara' },
+  { to: '/calzado',     label: 'Caldén' },
+  { to: '/calzado',     label: 'Zonda' },
+  { to: '/indumentaria',label: 'Anchitas' },
+  { to: '/cambios',     label: 'Cambios' },
+  { to: '/gift-card',   label: 'Gift Card' },
 ];
 
 export default function Navbar() {
@@ -57,7 +61,7 @@ export default function Navbar() {
         <nav className="navbar__nav" ref={navRef}>
           {LINKS.map(l => (
             <Link
-              key={l.to}
+              key={l.label}
               to={l.to}
               className={`nav-link ${location.pathname === l.to ? 'nav-link--active' : ''}`}
             >
@@ -81,7 +85,7 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div className={`navbar__drawer ${menuOpen ? 'open' : ''}`}>
         {LINKS.map(l => (
-          <Link key={l.to} to={l.to} className="drawer-link">{l.label}</Link>
+          <Link key={l.label} to={l.to} className="drawer-link">{l.label}</Link>
         ))}
         <Link to="/carrito" className="drawer-link">Carrito {count > 0 && `(${count})`}</Link>
       </div>

@@ -66,11 +66,11 @@ export default function Home() {
       <section className="home-hero">
         <div className="home-hero__eyebrow">Otoño · Invierno 2025</div>
         <h1 className="home-hero__title">
-          Una sola vez,<br /><em>bien hecho</em>
+          Viví anCHA
         </h1>
         <p className="home-hero__body">
-          Calzado e indumentaria artesanal argentina.<br />
-          Sin producción masiva. Sin compromisos.
+          anCHA nace de un encuentro magnético, casi ineludible.<br />
+          De una forma compartida de transitar la vida: con naturalidad, ligereza y libertad.
         </p>
       </section>
 
@@ -85,7 +85,7 @@ export default function Home() {
         />
         <HeroBlock
           bg="linear-gradient(145deg, #c8b8a8 0%, #9a8070 60%, #7a6858 100%)"
-          label="Vivi anCHA"
+          label="Viví anCHA"
           sub="El universo de la marca"
           to="/"
           delay={80}
@@ -127,9 +127,9 @@ export default function Home() {
         <div className="home-banner__img" style={{ background: 'linear-gradient(120deg, #2a2018 0%, #4a3828 60%, #3a2818 100%)' }}>
           <div className="home-banner__txt">
             <p className="home-banner__eye">Sobre la marca</p>
-            <h2>Artesanía argentina<br /><em>con raíces</em></h2>
-            <p>Cada par nace de manos locales, materiales nobles y un diseño que trasciende tendencias.</p>
-            <Link to="/" className="home-banner__btn">Descubrir anCHA</Link>
+            <h2>Aceptando lo que viene,<br /><em>dando espacio a cada forma</em></h2>
+            <p>Sin forzar. Sin apretar. Sin encajar. Creemos en habitar el presente, movernos con libertad y hacer lugar a lo que somos. Hoy. Acá. Ahora.</p>
+            <Link to="/" className="home-banner__btn">Viví anCHA</Link>
           </div>
         </div>
       </section>
@@ -170,17 +170,16 @@ export default function Home() {
         <div className="home-footer__inner container">
           <div className="home-footer__brand">
             <span className="home-footer__logo">anCHA</span>
-            <p>Buenos Aires, Argentina<br />hola@ancha.com.ar</p>
+            <p>Caseros, Bs. As.<br />viviancha.ar@gmail.com<br />11 3297 7252</p>
           </div>
           <div className="home-footer__links">
-            <Link to="/calzado">Calzado</Link>
-            <Link to="/indumentaria">Indumentaria</Link>
+            <Link to="/">Viví anCHA</Link>
+            <Link to="/calzado">Maitén · Mara · Caldén · Zonda</Link>
+            <Link to="/indumentaria">Anchitas</Link>
             <Link to="/cambios">Cambios y devoluciones</Link>
-            <Link to="/carrito">Carrito</Link>
           </div>
           <div className="home-footer__social">
-            <a href="#ig">@ancha.calzado</a>
-            <a href="#tt">TikTok</a>
+            <a href="https://instagram.com/viviancha.ar" target="_blank" rel="noreferrer">@viviancha.ar</a>
           </div>
         </div>
         <div className="home-footer__copy container">

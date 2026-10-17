@@ -7,6 +7,7 @@ import Calzado from './pages/Calzado';
 import Indumentaria from './pages/Indumentaria';
 import Returns from './pages/Returns';
 import Cart from './pages/Cart';
+import GiftCard from './pages/GiftCard';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/indumentaria" element={<Indumentaria />} />
           <Route path="/cambios" element={<Returns />} />
           <Route path="/carrito" element={<Cart />} />
+          <Route path="/gift-card" element={<GiftCard />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

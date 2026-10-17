@@ -1,32 +1,88 @@
 import React, { useState } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
+import { COLORS, SIZES_CALZADO } from '../data/products';
 import './Returns.css';
 
-const REASONS = [
-  'Talle incorrecto',
-  'No era lo que esperaba',
-  'Defecto de fabricación',
-  'Cambio de opinión',
-  'Regalo duplicado',
-  'Otro',
-];
+// ─── Configuración EmailJS ───────────────────────────────────────────────────
+// Para activar el envío de emails:
+// 1. Crear cuenta gratis en https://www.emailjs.com
+// 2. Crear un servicio de email (conectar viviancha.ar@gmail.com)
+// 3. Crear una plantilla con las variables: {{nombre}}, {{email}}, {{modelo}},
+//    {{color_tiene}}, {{talle_tiene}}, {{color_quiere}}, {{talle_quiere}}, {{motivo}}
+// 4. Reemplazar los valores de abajo con los IDs reales
+const EMAILJS_SERVICE_ID  = 'service_ancha';   // reemplazar
+const EMAILJS_TEMPLATE_ID = 'template_cambios'; // reemplazar
+const EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';    // reemplazar
+
+const MODELOS = ['Maitén', 'Mara', 'Caldén', 'Zonda'];
+const COLORES = Object.entries(COLORS).map(([k, v]) => ({ key: k, ...v }));
+const MOTIVOS = ['Talle incorrecto', 'Color incorrecto', 'Defecto de fabricación', 'Cambio de opinión', 'Otro'];
 
 export default function Returns() {
-  const [step, setStep] = useState(1);
-  const [form, setForm] = useState({ order: '', email: '', name: '', reason: '', comments: '' });
+  const [user, setUser]   = useState(null);
+  const [step, setStep]   = useState(1); // 1=login, 2=form, 3=ok
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
+  const [solicitud, setSolicitud] = useState('');
+  const [form, setForm]   = useState({
+    modelo: '', colorTiene: '', talleTiene: '', colorQuiere: '', talleQuiere: '', motivo: '', comentario: '',
+  });
+
   const f = (k, v) => setForm(p => ({ ...p, [k]: v }));
 
+  const handleGoogle = (credentialResponse) => {
+    const decoded = jwtDecode(credentialResponse.credential);
+    setUser({ name: decoded.name, email: decoded.email, picture: decoded.picture });
+    setStep(2);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSending(true);
+    setError('');
+    const id = `ACH-${Math.floor(10000 + Math.random() * 90000)}`;
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          nombre:       user.name,
+          email:        user.email,
+          modelo:       form.modelo,
+          color_tiene:  COLORS[form.colorTiene]?.label || form.colorTiene,
+          talle_tiene:  form.talleTiene,
+          color_quiere: COLORS[form.colorQuiere]?.label || form.colorQuiere,
+          talle_quiere: form.talleQuiere,
+          motivo:       form.motivo,
+          comentario:   form.comentario,
+          solicitud_id: id,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSolicitud(id);
+      setStep(3);
+    } catch {
+      setError('Hubo un error al enviar. Escribinos directamente a viviancha.ar@gmail.com');
+    } finally {
+      setSending(false);
+    }
+  };
+
+  // ── Paso 3: confirmación ──
   if (step === 3) return (
     <div className="returns-page">
       <div className="returns-success container">
         <div className="returns-success__icon">✓</div>
         <p className="returns-success__eyebrow">Solicitud recibida</p>
-        <h2>Tu cambio está en camino</h2>
-        <p>En las próximas 24 horas hábiles te escribimos a <strong>{form.email}</strong> con las instrucciones para enviar tu paquete.</p>
-        <p className="returns-success__note">Número de solicitud: <strong>ACH-{Math.floor(10000 + Math.random() * 90000)}</strong></p>
+        <h2>¡Tu cambio está en camino!</h2>
+        <p>Hola <strong>{user?.name}</strong>, en 24–48 hs hábiles te contactamos a <strong>{user?.email}</strong> o por WhatsApp con las instrucciones para enviarnos el paquete.</p>
+        <p className="returns-success__note">N° de solicitud: <strong>{solicitud}</strong></p>
+        <p className="returns-success__hint">Guardá este número por cualquier consulta.</p>
         <div className="returns-success__actions">
           <Link to="/" className="returns-btn">Volver al inicio</Link>
-          <Link to="/calzado" className="returns-btn returns-btn--outline">Seguir comprando</Link>
         </div>
       </div>
     </div>
@@ -38,78 +94,144 @@ export default function Returns() {
         <div className="container">
           <p className="returns-eye">Posventa · anCHA</p>
           <h1 className="returns-title">Portal de cambios</h1>
-          <p className="returns-sub">Cambios y devoluciones sin costo dentro de los 30 días de recibido tu pedido.</p>
+          <p className="returns-sub">Cambios sin costo dentro de los 30 días de recibido tu pedido.</p>
         </div>
       </div>
 
       <div className="returns-body container">
-        <div className="returns-steps">
-          {['Identificá tu pedido', 'Motivo del cambio', 'Confirmación'].map((label, i) => (
-            <div key={i} className={`returns-step ${step === i + 1 ? 'active' : ''} ${step > i + 1 ? 'done' : ''}`}>
-              <span className="returns-step__num">{step > i + 1 ? '✓' : i + 1}</span>
-              <span className="returns-step__label">{label}</span>
+        {/* ── Paso 1: Google Sign-In ── */}
+        {step === 1 && (
+          <div className="returns-card returns-card--center">
+            <h2 className="returns-card__title">Identificate para continuar</h2>
+            <p className="returns-card__desc">Usamos tu cuenta de Google para pre-completar tus datos. No compartimos tu información.</p>
+            <div className="returns-google">
+              <GoogleLogin
+                onSuccess={handleGoogle}
+                onError={() => setError('No pudimos conectar con Google. Intentá de nuevo.')}
+                text="continue_with"
+                shape="rectangular"
+                size="large"
+                locale="es"
+              />
             </div>
-          ))}
-        </div>
+            {error && <p className="returns-error">{error}</p>}
+            <p className="returns-card__hint">¿Preferís sin Google? Escribinos a <a href="mailto:viviancha.ar@gmail.com">viviancha.ar@gmail.com</a></p>
+          </div>
+        )}
 
-        <div className="returns-card">
-          {step === 1 && (
-            <form onSubmit={e => { e.preventDefault(); setStep(2); }}>
-              <h2 className="returns-card__title">Identificá tu pedido</h2>
-              <p className="returns-card__desc">Ingresá los datos del pedido que querés cambiar o devolver.</p>
-              <div className="returns-fields">
-                <div className="returns-field">
-                  <label>Número de pedido</label>
-                  <input type="text" required placeholder="ACH-XXXXX" value={form.order} onChange={e => f('order', e.target.value)} />
-                </div>
-                <div className="returns-field">
-                  <label>Email de la compra</label>
-                  <input type="email" required placeholder="tu@email.com" value={form.email} onChange={e => f('email', e.target.value)} />
-                </div>
-                <div className="returns-field">
-                  <label>Nombre completo</label>
-                  <input type="text" required placeholder="Ana García" value={form.name} onChange={e => f('name', e.target.value)} />
-                </div>
-              </div>
-              <button type="submit" className="returns-btn">Continuar →</button>
-            </form>
-          )}
+        {/* ── Paso 2: formulario ── */}
+        {step === 2 && (
+          <form className="returns-card" onSubmit={handleSubmit}>
+            <div className="returns-user-bar">
+              {user?.picture && <img src={user.picture} alt="" className="returns-avatar" referrerPolicy="no-referrer" />}
+              <span>{user?.name} · {user?.email}</span>
+            </div>
 
-          {step === 2 && (
-            <form onSubmit={e => { e.preventDefault(); setStep(3); }}>
-              <h2 className="returns-card__title">Motivo del cambio</h2>
-              <p className="returns-card__desc">Contanos por qué querés hacer el cambio para poder ayudarte mejor.</p>
-              <div className="returns-fields">
-                <div className="returns-field">
-                  <label>Motivo</label>
-                  <div className="returns-reasons">
-                    {REASONS.map(r => (
-                      <button
-                        type="button"
-                        key={r}
-                        className={`returns-reason ${form.reason === r ? 'active' : ''}`}
-                        onClick={() => f('reason', r)}
-                      >{r}</button>
-                    ))}
-                  </div>
+            <h2 className="returns-card__title">¿Qué querés cambiar?</h2>
+
+            {/* Modelo */}
+            <div className="returns-field">
+              <label>Modelo</label>
+              <div className="returns-pills">
+                {MODELOS.map(m => (
+                  <button type="button" key={m}
+                    className={`returns-pill ${form.modelo === m ? 'active' : ''}`}
+                    onClick={() => f('modelo', m)}>{m}</button>
+                ))}
+              </div>
+            </div>
+
+            {/* Lo que tiene */}
+            <div className="returns-row">
+              <div className="returns-field">
+                <label>Color que tenés</label>
+                <div className="returns-swatches">
+                  {COLORES.map(c => (
+                    <button type="button" key={c.key}
+                      className={`returns-swatch ${form.colorTiene === c.key ? 'active' : ''}`}
+                      style={{ background: c.hex }}
+                      title={c.label}
+                      onClick={() => f('colorTiene', c.key)} />
+                  ))}
                 </div>
-                <div className="returns-field">
-                  <label>Comentarios adicionales (opcional)</label>
-                  <textarea
-                    placeholder="Contanos más detalles si lo necesitás…"
-                    value={form.comments}
-                    onChange={e => f('comments', e.target.value)}
-                    rows={4}
-                  />
+                {form.colorTiene && <p className="returns-selected">{COLORS[form.colorTiene]?.label}</p>}
+              </div>
+              <div className="returns-field">
+                <label>Talle que tenés</label>
+                <div className="returns-pills">
+                  {SIZES_CALZADO.map(s => (
+                    <button type="button" key={s}
+                      className={`returns-pill returns-pill--sm ${form.talleTiene === s ? 'active' : ''}`}
+                      onClick={() => f('talleTiene', s)}>{s}</button>
+                  ))}
                 </div>
               </div>
-              <div className="returns-card__actions">
-                <button type="button" className="returns-btn--ghost" onClick={() => setStep(1)}>← Volver</button>
-                <button type="submit" className="returns-btn" disabled={!form.reason}>Confirmar solicitud</button>
+            </div>
+
+            {/* Lo que quiere */}
+            <div className="returns-row">
+              <div className="returns-field">
+                <label>Color que querés</label>
+                <div className="returns-swatches">
+                  {COLORES.map(c => (
+                    <button type="button" key={c.key}
+                      className={`returns-swatch ${form.colorQuiere === c.key ? 'active' : ''}`}
+                      style={{ background: c.hex }}
+                      title={c.label}
+                      onClick={() => f('colorQuiere', c.key)} />
+                  ))}
+                </div>
+                {form.colorQuiere && <p className="returns-selected">{COLORS[form.colorQuiere]?.label}</p>}
               </div>
-            </form>
-          )}
-        </div>
+              <div className="returns-field">
+                <label>Talle que querés</label>
+                <div className="returns-pills">
+                  {SIZES_CALZADO.map(s => (
+                    <button type="button" key={s}
+                      className={`returns-pill returns-pill--sm ${form.talleQuiere === s ? 'active' : ''}`}
+                      onClick={() => f('talleQuiere', s)}>{s}</button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Motivo */}
+            <div className="returns-field">
+              <label>Motivo</label>
+              <div className="returns-pills">
+                {MOTIVOS.map(m => (
+                  <button type="button" key={m}
+                    className={`returns-pill ${form.motivo === m ? 'active' : ''}`}
+                    onClick={() => f('motivo', m)}>{m}</button>
+                ))}
+              </div>
+            </div>
+
+            {/* Comentario */}
+            <div className="returns-field">
+              <label>Comentario (opcional)</label>
+              <textarea
+                placeholder="Cualquier detalle extra que nos ayude…"
+                rows={3}
+                value={form.comentario}
+                onChange={e => f('comentario', e.target.value)}
+              />
+            </div>
+
+            {error && <p className="returns-error">{error}</p>}
+
+            <div className="returns-card__actions">
+              <button type="button" className="returns-btn--ghost" onClick={() => setStep(1)}>← Volver</button>
+              <button
+                type="submit"
+                className="returns-btn"
+                disabled={sending || !form.modelo || !form.colorTiene || !form.talleTiene || !form.colorQuiere || !form.talleQuiere || !form.motivo}
+              >
+                {sending ? 'Enviando…' : 'Enviar solicitud'}
+              </button>
+            </div>
+          </form>
+        )}
 
         <div className="returns-info">
           <div className="returns-info__block">
@@ -118,12 +240,12 @@ export default function Returns() {
               <li>30 días desde la recepción del pedido</li>
               <li>El producto debe estar sin uso y con etiquetas</li>
               <li>Un cambio por pedido</li>
-              <li>Devoluciones con crédito en tienda</li>
             </ul>
           </div>
           <div className="returns-info__block">
             <h3>¿Tenés dudas?</h3>
-            <p>Escribinos a <a href="mailto:hola@ancha.com.ar">hola@ancha.com.ar</a> o por Instagram <a href="https://instagram.com/ancha.ar" target="_blank" rel="noreferrer">@ancha.ar</a></p>
+            <p>Escribinos a <a href="mailto:viviancha.ar@gmail.com">viviancha.ar@gmail.com</a><br />
+            o por Instagram <a href="https://instagram.com/viviancha.ar" target="_blank" rel="noreferrer">@viviancha.ar</a></p>
           </div>
         </div>
       </div>

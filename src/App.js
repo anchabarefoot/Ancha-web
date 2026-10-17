@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -13,24 +14,31 @@ import Returns from './pages/Returns';
 import Cart from './pages/Cart';
 import GiftCard from './pages/GiftCard';
 
+// Google Client ID: crear en https://console.cloud.google.com
+// Credenciales > ID de cliente OAuth > Aplicación web
+// Agregar en Vercel: Settings > Environment Variables > REACT_APP_GOOGLE_CLIENT_ID
+const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
+
 export default function App() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/vivi-ancha" element={<ViviAncha />} />
-          <Route path="/maiten" element={<Maiten />} />
-          <Route path="/mara" element={<Mara />} />
-          <Route path="/calden" element={<Calden />} />
-          <Route path="/zonda" element={<Zonda />} />
-          <Route path="/anchitas" element={<Anchitas />} />
-          <Route path="/cambios" element={<Returns />} />
-          <Route path="/carrito" element={<Cart />} />
-          <Route path="/gift-card" element={<GiftCard />} />
-        </Routes>
-      </BrowserRouter>
-    </CartProvider>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <CartProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/vivi-ancha" element={<ViviAncha />} />
+            <Route path="/maiten" element={<Maiten />} />
+            <Route path="/mara" element={<Mara />} />
+            <Route path="/calden" element={<Calden />} />
+            <Route path="/zonda" element={<Zonda />} />
+            <Route path="/anchitas" element={<Anchitas />} />
+            <Route path="/cambios" element={<Returns />} />
+            <Route path="/carrito" element={<Cart />} />
+            <Route path="/gift-card" element={<GiftCard />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+    </GoogleOAuthProvider>
   );
 }

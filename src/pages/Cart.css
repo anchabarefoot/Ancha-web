@@ -239,3 +239,39 @@
   .cart-row { grid-template-columns: 70px 1fr; }
   .cart-row__right { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; align-items: center; }
 }
+
+/* Mercado Pago */
+.cart-btn--mp {
+  width: 100%;
+  height: 52px;
+  background: #009ee3;
+  color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  transition: background 0.2s;
+}
+.cart-btn--mp:hover:not(:disabled) { background: #0080c0; }
+.cart-btn--mp:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.cart-mp-error {
+  font-size: 0.78rem;
+  color: #c0392b;
+  margin-top: 8px;
+  text-align: center;
+}
+.cart-mp-note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.5;
+}

@@ -1,26 +1,90 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { formatPrice } from '../data/products';
 import './Cart.css';
 
+function MPLogo() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style={{ display:'inline', verticalAlign:'middle', marginRight:6 }}>
+      <circle cx="12" cy="12" r="12" fill="#009ee3"/>
+      <text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff" fontFamily="Arial" fontWeight="bold">MP</text>
+    </svg>
+  );
+}
+
 export default function Cart() {
   const { items, remove, setQty, clear, total } = useCart();
-  const [checkout, setCheckout] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', address: '', province: '', zip: '' });
-  const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mpError, setMpError] = useState('');
+  const [searchParams] = useSearchParams();
+  const pagoStatus = searchParams.get('pago');
 
   const shipping = total > 80000 ? 0 : 3500;
-  const f = (k, v) => setForm(p => ({ ...p, [k]: v }));
+  const grandTotal = total + shipping;
 
-  if (done) return (
+  const handleMercadoPago = async () => {
+    setLoading(true);
+    setMpError('');
+    try {
+      const res = await fetch('/api/create-preference', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: items.map(i => ({
+            id:    i.id,
+            name:  i.name,
+            color: i.color,
+            size:  i.size,
+            price: i.price,
+            qty:   i.qty,
+          })),
+        }),
+      });
+      const data = await res.json();
+      if (data.init_point) {
+        window.location.href = data.init_point;
+      } else {
+        setMpError('No pudimos conectar con Mercado Pago. Intentá de nuevo.');
+      }
+    } catch {
+      setMpError('No pudimos conectar con Mercado Pago. Intentá de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ── Regreso de Mercado Pago ──
+  if (pagoStatus === 'ok') return (
     <div className="cart-page">
       <div className="cart-success container">
         <div className="cart-success__check">✓</div>
-        <h2>¡Pedido confirmado!</h2>
-        <p>Te escribimos a <strong>{form.email}</strong> con todos los detalles.</p>
+        <h2>¡Pago confirmado!</h2>
+        <p>Tu pedido está en preparación. En 24–48 hs hábiles te llegará el seguimiento.</p>
         <p className="cart-success__note">Preparación: 3 a 5 días hábiles.</p>
-        <Link to="/" className="cart-btn">Seguir comprando</Link>
+        <Link to="/" className="cart-btn" onClick={clear}>Seguir comprando</Link>
+      </div>
+    </div>
+  );
+
+  if (pagoStatus === 'pendiente') return (
+    <div className="cart-page">
+      <div className="cart-success container">
+        <div className="cart-success__check" style={{ color: '#C8921A' }}>⏳</div>
+        <h2>Pago pendiente</h2>
+        <p>Tu pago está siendo procesado. Te avisamos cuando se confirme.</p>
+        <Link to="/" className="cart-btn">Volver al inicio</Link>
+      </div>
+    </div>
+  );
+
+  if (pagoStatus === 'error') return (
+    <div className="cart-page">
+      <div className="cart-success container">
+        <div className="cart-success__check" style={{ color: '#c0392b' }}>✗</div>
+        <h2>Hubo un problema con el pago</h2>
+        <p>Podés intentarlo de nuevo o contactarnos.</p>
+        <Link to="/carrito" className="cart-btn">Intentar de nuevo</Link>
       </div>
     </div>
   );
@@ -30,8 +94,7 @@ export default function Cart() {
       <div className="cart-empty container">
         <h2>Tu carrito está vacío</h2>
         <p>Todavía no agregaste ningún producto.</p>
-        <Link to="/calzado" className="cart-btn">Ver calzado</Link>
-        <Link to="/indumentaria" className="cart-btn cart-btn--outline">Ver indumentaria</Link>
+        <Link to="/maiten" className="cart-btn">Ver modelos</Link>
       </div>
     </div>
   );
@@ -47,11 +110,11 @@ export default function Cart() {
         {/* Items */}
         <div className="cart-items">
           {items.map(item => (
-            <div key={`${item.id}-${item.size}`} className="cart-row">
-              <div className="cart-row__img" style={{ background: item.color }} />
+            <div key={`${item.id}-${item.size}-${item.color}`} className="cart-row">
+              <div className="cart-row__img" style={{ background: item.color || '#e8e0d4' }} />
               <div className="cart-row__info">
                 <h3>{item.name}</h3>
-                <p>Talle {item.size}</p>
+                <p>Talle {item.size}{item.color ? ` · ${item.color}` : ''}</p>
               </div>
               <div className="cart-row__right">
                 <div className="cart-qty">
@@ -73,36 +136,25 @@ export default function Cart() {
             <div className="line"><span>Subtotal</span><span>{formatPrice(total)}</span></div>
             <div className="line"><span>Envío</span><span>{shipping ? formatPrice(shipping) : 'Gratis'}</span></div>
             {shipping > 0 && <p className="cart-summary__note">Envío gratis superando {formatPrice(80000)}</p>}
-            <div className="line line--total"><span>Total</span><span>{formatPrice(total + shipping)}</span></div>
+            <div className="line line--total"><span>Total</span><span>{formatPrice(grandTotal)}</span></div>
           </div>
 
-          {!checkout ? (
-            <button className="cart-btn" onClick={() => setCheckout(true)}>Continuar compra</button>
-          ) : (
-            <form className="cart-form" onSubmit={e => { e.preventDefault(); setDone(true); clear(); }}>
-              <p className="cart-form__title">Datos de envío</p>
-              {[
-                { k: 'name', l: 'Nombre completo', ph: 'Ana García', t: 'text' },
-                { k: 'email', l: 'Email', ph: 'ana@email.com', t: 'email' },
-                { k: 'address', l: 'Dirección', ph: 'Av. Corrientes 1234', t: 'text' },
-                { k: 'zip', l: 'Código postal', ph: '1414', t: 'text' },
-              ].map(({ k, l, ph, t }) => (
-                <div className="cart-field" key={k}>
-                  <label>{l}</label>
-                  <input type={t} required placeholder={ph} value={form[k]} onChange={e => f(k, e.target.value)} />
-                </div>
-              ))}
-              <div className="cart-field">
-                <label>Provincia</label>
-                <select required value={form.province} onChange={e => f('province', e.target.value)}>
-                  <option value="">Seleccionar</option>
-                  {['Buenos Aires','CABA','Córdoba','Santa Fe','Mendoza','Tucumán','Salta','Neuquén','Entre Ríos','Corrientes','Misiones','Chaco','Jujuy','Río Negro','Formosa','La Rioja','San Juan','San Luis','Catamarca','La Pampa','Chubut','Santa Cruz','Tierra del Fuego'].map(p => <option key={p}>{p}</option>)}
-                </select>
-              </div>
-              <button type="submit" className="cart-btn">Confirmar pedido</button>
-              <button type="button" className="cart-btn--text" onClick={() => setCheckout(false)}>← Volver</button>
-            </form>
-          )}
+          <button
+            className="cart-btn cart-btn--mp"
+            onClick={handleMercadoPago}
+            disabled={loading}
+          >
+            <MPLogo />
+            {loading ? 'Redirigiendo…' : 'Pagar con Mercado Pago'}
+          </button>
+
+          {mpError && <p className="cart-mp-error">{mpError}</p>}
+
+          <p className="cart-mp-note">
+            Pagá con tarjeta, transferencia o en efectivo. Procesado por Mercado Pago — tus datos están protegidos.
+          </p>
+
+          <button className="cart-btn--text" onClick={clear}>Vaciar carrito</button>
         </div>
       </div>
     </div>

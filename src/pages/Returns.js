@@ -78,9 +78,33 @@ export default function Returns() {
         <div className="returns-success__icon">✓</div>
         <p className="returns-success__eyebrow">Solicitud recibida</p>
         <h2>¡Tu cambio está en camino!</h2>
-        <p>Hola <strong>{user?.name}</strong>, en 24–48 hs hábiles te contactamos a <strong>{user?.email}</strong> o por WhatsApp con las instrucciones para enviarnos el paquete.</p>
+        <p>Hola <strong>{user?.name}</strong>, en 24–48 hs hábiles te contactamos a <strong>{user?.email}</strong> con las instrucciones para enviarnos el paquete.</p>
         <p className="returns-success__note">N° de solicitud: <strong>{solicitud}</strong></p>
-        <p className="returns-success__hint">Guardá este número por cualquier consulta.</p>
+
+        <div className="returns-shipping">
+          <p className="returns-shipping__title">Datos para el envío</p>
+          <div className="returns-shipping__box">
+            <div className="returns-shipping__dim">
+              <span>Alto</span><strong>10 cm</strong>
+            </div>
+            <div className="returns-shipping__dim">
+              <span>Ancho</span><strong>16 cm</strong>
+            </div>
+            <div className="returns-shipping__dim">
+              <span>Largo</span><strong>30 cm</strong>
+            </div>
+          </div>
+          <p className="returns-shipping__hint">Usá estos medidas cuando generes el envío en Andreani.</p>
+          <a
+            href="https://www.andreani.com/personas/envios"
+            target="_blank"
+            rel="noreferrer"
+            className="returns-btn returns-btn--outline"
+          >
+            Generar envío en Andreani →
+          </a>
+        </div>
+
         <div className="returns-success__actions">
           <Link to="/" className="returns-btn">Volver al inicio</Link>
         </div>

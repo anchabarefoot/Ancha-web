@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
+import FloatingCTA from './components/FloatingCTA';
 import Home from './pages/Home';
 import ViviAncha from './pages/ViviAncha';
 import Maiten from './pages/Maiten';
@@ -25,6 +26,7 @@ export default function App() {
       <CartProvider>
         <BrowserRouter>
           <Navbar />
+          <FloatingCTA />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/vivi-ancha" element={<ViviAncha />} />

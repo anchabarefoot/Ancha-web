@@ -15,9 +15,9 @@
 }
 
 .vivi-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 300;
+  font-weight: 200;
   color: #fff;
   letter-spacing: 0.02em;
 }
@@ -29,9 +29,9 @@
 }
 
 .vivi-manifesto p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: clamp(1.2rem, 2.5vw, 1.55rem);
-  font-weight: 300;
+  font-weight: 200;
   line-height: 1.75;
   color: var(--text);
   margin-bottom: 24px;

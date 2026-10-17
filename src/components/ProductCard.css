@@ -13,7 +13,7 @@
   text-decoration: none;
 }
 
-/* Real product photos */
+/* Real product photos — rotate effect */
 .pcard__photo {
   position: absolute;
   top: 0; left: 0;
@@ -21,9 +21,18 @@
   object-fit: cover;
   object-position: center;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transform: translateX(30px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  will-change: opacity, transform;
 }
-.pcard__photo.visible { opacity: 1; }
+.pcard__photo.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.pcard__photo.exiting {
+  opacity: 0;
+  transform: translateX(-30px);
+}
 
 /* Image indicator dots */
 .pcard__dots {
@@ -72,9 +81,9 @@
 }
 
 .pcard__mono {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 6rem;
-  font-weight: 300;
+  font-weight: 200;
   color: rgba(255,255,255,0.22);
   pointer-events: none;
   user-select: none;
@@ -174,7 +183,7 @@
 }
 
 .pcard__name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--text);

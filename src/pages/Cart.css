@@ -9,9 +9,9 @@
 }
 
 .cart-head h1 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2.5rem;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 .cart-head span {
@@ -48,7 +48,7 @@
 }
 
 .cart-row__info h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
   margin-bottom: 4px;
@@ -102,7 +102,7 @@
 }
 
 .cart-summary h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.3rem;
   font-weight: 400;
   margin-bottom: 24px;
@@ -209,9 +209,9 @@
 }
 
 .cart-empty h2, .cart-success h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2.2rem;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 .cart-empty p, .cart-success p { font-size: 0.85rem; color: var(--text-muted); max-width: 340px; }

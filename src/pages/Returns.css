@@ -14,9 +14,9 @@
 }
 
 .returns-title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 300;
+  font-weight: 200;
   color: var(--text);
   margin-bottom: 12px;
 }
@@ -100,9 +100,9 @@
 }
 
 .returns-card__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.6rem;
-  font-weight: 300;
+  font-weight: 200;
   margin-bottom: 8px;
 }
 
@@ -226,7 +226,7 @@
 }
 
 .returns-info__block h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
   margin-bottom: 12px;
@@ -291,9 +291,9 @@
 }
 
 .returns-success h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2.2rem;
-  font-weight: 300;
+  font-weight: 200;
 }
 
 .returns-success p { font-size: 0.85rem; color: var(--text-muted); max-width: 380px; }

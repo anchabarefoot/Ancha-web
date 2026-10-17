@@ -21,9 +21,9 @@
 }
 
 .home-hero__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: clamp(3.5rem, 10vw, 9rem);
-  font-weight: 300;
+  font-weight: 200;
   line-height: 1.0;
   letter-spacing: -0.01em;
   color: var(--text);
@@ -94,9 +94,9 @@
 }
 
 .hero-block__label {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: clamp(1.6rem, 3vw, 2.6rem);
-  font-weight: 300;
+  font-weight: 200;
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 14px;
@@ -164,9 +164,9 @@
 }
 
 .home-section__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2.2rem;
-  font-weight: 300;
+  font-weight: 200;
   color: var(--text);
 }
 
@@ -212,9 +212,9 @@
 }
 
 .home-banner__txt h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: clamp(2.2rem, 5vw, 4rem);
-  font-weight: 300;
+  font-weight: 200;
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 20px;
@@ -275,7 +275,7 @@
 }
 
 .pillar__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.35rem;
   font-weight: 400;
   margin-bottom: 10px;
@@ -303,9 +303,9 @@
 }
 
 .home-footer__logo {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2rem;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: 0.15em;
   color: var(--white);
   display: block;

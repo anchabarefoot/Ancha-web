@@ -1,38 +1,142 @@
-// Paleta de colores para placeholders de imágenes
-const SWATCHES = {
-  sand:   '#d4c4b0',
-  taupe:  '#9a8878',
-  ivory:  '#ede8e0',
-  camel:  '#b8966a',
-  slate:  '#8898a0',
-  blush:  '#d4a898',
-  khaki:  '#b0a888',
-  dusk:   '#9888a8',
+export const COLORS = {
+  negro:     { label: 'Negro',     hex: '#1C1C1C' },
+  natural:   { label: 'Natural',   hex: '#E8DCC4' },
+  gris:      { label: 'Gris',      hex: '#9A9A96' },
+  verde:     { label: 'Verde',     hex: '#5E6B4A' },
+  azul:      { label: 'Azul',      hex: '#2F3E55' },
+  mostaza:   { label: 'Mostaza',   hex: '#C8921A' },
+  chocolate: { label: 'Chocolate', hex: '#5A3A26' },
+  suela:     { label: 'Suela',     hex: '#A0673A' },
+  bordo:     { label: 'Bordo',     hex: '#7A2030' },
+  jean:      { label: 'Jean',      hex: '#4A6080' },
 };
 
+export const SIZES_CALZADO = ['35/36', '37/38', '39/40', '41/42', '43/44', '45/46'];
+export const SIZES_ANCHITAS_SPORT = ['26/27', '28/29', '30/31', '32/33', '34/35', '35/36'];
+export const SIZES_ANCHITAS_LINO = ['26/27', '28/29', '30/31', '32/33', '34/35', '35/36'];
+
 export const calzado = [
-  { id: 'c1', name: 'Mule Toscana', category: 'calzado', sub: 'Mules', price: 89900, color1: SWATCHES.sand,  color2: SWATCHES.taupe,  sizes: [35,36,37,38,39,40], tag: 'Nuevo' },
-  { id: 'c2', name: 'Sandalia Córdoba', category: 'calzado', sub: 'Sandalias', price: 74900, color1: SWATCHES.ivory, color2: SWATCHES.camel,  sizes: [35,36,37,38,39,40], tag: 'Más vendido' },
-  { id: 'c3', name: 'Bota Pampa', category: 'calzado', sub: 'Botas', price: 149900, color1: SWATCHES.camel,  color2: '#3a2a1a',       sizes: [35,36,37,38,39,40], tag: null },
-  { id: 'c4', name: 'Zueco Quebracho', category: 'calzado', sub: 'Zuecos', price: 64900, color1: SWATCHES.taupe,  color2: SWATCHES.sand,   sizes: [35,36,37,38,39,40], tag: 'Nuevo' },
-  { id: 'c5', name: 'Mocasín Litoral', category: 'calzado', sub: 'Mocasines', price: 99900, color1: '#2a2a2a',    color2: SWATCHES.camel,  sizes: [35,36,37,38,39,40], tag: null },
-  { id: 'c6', name: 'Ballerina Pampas', category: 'calzado', sub: 'Bailarinas', price: 59900, color1: SWATCHES.ivory, color2: SWATCHES.sand,   sizes: [35,36,37,38,39,40], tag: 'Más vendido' },
+  {
+    id: 'maiten',
+    name: 'Maitén',
+    category: 'calzado',
+    sub: 'Náutico',
+    description: 'Un Náutico distinto, se adapta, acompaña y deja al pie moverse libremente.',
+    price: 89900,
+    colors: ['verde', 'azul', 'gris', 'natural', 'negro'],
+    sizes: SIZES_CALZADO,
+    images: [
+      '/images/maiten-natural.jpg',
+      '/images/maiten-gris.jpg',
+      '/images/maiten-jean.jpg',
+      '/images/maiten-negro-negra.jpg',
+      '/images/maiten-negro-panko.jpg',
+    ],
+    colorImages: {
+      natural:   ['/images/maiten-natural.jpg'],
+      gris:      ['/images/maiten-gris.jpg'],
+      jean:      ['/images/maiten-jean.jpg'],
+      negro:     ['/images/maiten-negro-negra.jpg', '/images/maiten-negro-panko.jpg'],
+    },
+    color1: '#E8DCC4',
+    color2: '#9A9A96',
+    tag: 'Nuevo',
+  },
+  {
+    id: 'mara',
+    name: 'Mara',
+    category: 'calzado',
+    sub: 'Alpargata',
+    description: 'Alma gaucha, hoy y ahora. Una alpargata abierta que se adapta, acompaña y deja al pie moverse libremente.',
+    price: 79900,
+    colors: ['verde', 'azul', 'gris', 'natural', 'negro'],
+    sizes: SIZES_CALZADO,
+    images: [
+      '/images/mara-azul.jpg',
+    ],
+    colorImages: {
+      azul: ['/images/mara-azul.jpg'],
+    },
+    color1: '#2F3E55',
+    color2: '#5E6B4A',
+    tag: null,
+  },
+  {
+    id: 'calden',
+    name: 'Caldén',
+    category: 'calzado',
+    sub: 'Acordonado',
+    description: 'La elegancia también puede sentirse libre. El acordonado clásico, reinterpretado desde la amplitud y el movimiento natural.',
+    price: 99900,
+    colors: ['gris', 'natural', 'bordo', 'jean', 'negro'],
+    sizes: SIZES_CALZADO,
+    images: [
+      '/images/calden-natural.jpg',
+      '/images/calden-bordo.jpg',
+      '/images/calden-gris.jpg',
+      '/images/calden-jean.jpg',
+    ],
+    colorImages: {
+      natural: ['/images/calden-natural.jpg'],
+      bordo:   ['/images/calden-bordo.jpg'],
+      gris:    ['/images/calden-gris.jpg'],
+      jean:    ['/images/calden-jean.jpg'],
+    },
+    color1: '#9A9A96',
+    color2: '#5A3A26',
+    tag: null,
+  },
+  {
+    id: 'zonda',
+    name: 'Zonda',
+    category: 'calzado',
+    sub: 'Sandalia',
+    description: 'Aire libre para tus pasos. Una sandalia esencial, liviana y sin estructuras innecesarias.',
+    price: 74900,
+    colors: ['gris', 'natural', 'mostaza', 'chocolate', 'negro', 'verde', 'suela'],
+    sizes: SIZES_CALZADO,
+    images: [],
+    colorImages: {},
+    color1: '#E8DCC4',
+    color2: '#A0673A',
+    tag: null,
+  },
 ];
 
-export const indumentaria = [
-  { id: 'i1', name: 'Cardigan Lino', category: 'indumentaria', sub: 'Sweaters', price: 119900, color1: SWATCHES.khaki, color2: SWATCHES.ivory, sizes: ['XS','S','M','L','XL'], tag: 'Nuevo' },
-  { id: 'i2', name: 'Camisa Overa', category: 'indumentaria', sub: 'Camisas', price: 89900, color1: '#f0e8d8', color2: SWATCHES.sand,  sizes: ['XS','S','M','L'], tag: null },
-  { id: 'i3', name: 'Pantalón Recto', category: 'indumentaria', sub: 'Pantalones', price: 109900, color1: '#c8c0b0', color2: '#2a2822', sizes: ['XS','S','M','L','XL'], tag: 'Más vendido' },
-  { id: 'i4', name: 'Vestido Pampa', category: 'indumentaria', sub: 'Vestidos', price: 139900, color1: SWATCHES.blush, color2: SWATCHES.dusk,  sizes: ['XS','S','M','L'], tag: 'Nuevo' },
-  { id: 'i5', name: 'Top Tejido', category: 'indumentaria', sub: 'Tops', price: 69900, color1: SWATCHES.sand,  color2: '#d0b890', sizes: ['XS','S','M','L'], tag: null },
-  { id: 'i6', name: 'Saco Quebracho', category: 'indumentaria', sub: 'Sacos', price: 159900, color1: SWATCHES.slate, color2: SWATCHES.khaki, sizes: ['XS','S','M','L','XL'], tag: null },
+export const anchitas = [
+  {
+    id: 'anchitas-sport',
+    name: 'Sport',
+    category: 'anchitas',
+    sub: 'Oversize',
+    description: 'Libertad desde chiquita. Diseño oversize para que cada paso sea un juego.',
+    price: 59900,
+    colors: ['natural', 'negro', 'azul', 'verde'],
+    sizes: SIZES_ANCHITAS_SPORT,
+    images: [],
+    colorImages: {},
+    color1: '#E8DCC4',
+    color2: '#5E6B4A',
+    tag: null,
+  },
+  {
+    id: 'anchitas-lino',
+    name: 'Lino · Frecuencia',
+    category: 'anchitas',
+    sub: 'Lino',
+    description: 'Liviana, transpirable y natural. La elección para los días de movimiento.',
+    price: 54900,
+    colors: ['natural', 'gris', 'verde'],
+    sizes: SIZES_ANCHITAS_LINO,
+    images: [],
+    colorImages: {},
+    color1: '#E8DCC4',
+    color2: '#9A9A96',
+    tag: null,
+  },
 ];
 
-export const featured = [
-  { ...calzado[0], heroColor: '#e8ddd0' },
-  { ...indumentaria[3], heroColor: '#f0e4dc' },
-  { ...calzado[2], heroColor: '#d8c8b0' },
-];
+export const indumentaria = [];
 
 export const formatPrice = p =>
   new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(p);

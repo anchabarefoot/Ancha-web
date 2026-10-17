@@ -4,12 +4,12 @@ import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const LINKS = [
-  { to: '/',            label: 'Viví anCHA' },
-  { to: '/calzado',     label: 'Maitén' },
-  { to: '/calzado',     label: 'Mara' },
-  { to: '/calzado',     label: 'Caldén' },
-  { to: '/calzado',     label: 'Zonda' },
-  { to: '/indumentaria',label: 'Anchitas' },
+  { to: '/vivi-ancha',  label: 'Viví anCHA' },
+  { to: '/maiten',      label: 'Maitén' },
+  { to: '/mara',        label: 'Mara' },
+  { to: '/calden',      label: 'Caldén' },
+  { to: '/zonda',       label: 'Zonda' },
+  { to: '/anchitas',    label: 'Anchitas' },
   { to: '/cambios',     label: 'Cambios' },
   { to: '/gift-card',   label: 'Gift Card' },
 ];

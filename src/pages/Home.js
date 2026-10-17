@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { calzado, indumentaria } from '../data/products';
+import { calzado } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import './Home.css';
 
@@ -57,8 +57,7 @@ function HeroBlock({ bg, label, sub, to, delay = 0 }) {
 }
 
 export default function Home() {
-  const newCalzado   = calzado.slice(0, 4);
-  const newIndum     = indumentaria.slice(0, 4);
+  const newCalzado = calzado.slice(0, 4);
 
   return (
     <div className="home">
@@ -78,23 +77,23 @@ export default function Home() {
       <section className="home-blocks container">
         <HeroBlock
           bg="linear-gradient(145deg, #d4c4b0 0%, #b8a070 100%)"
-          label="Calzado"
-          sub="Nueva colección"
-          to="/calzado"
+          label="Maitén"
+          sub="Náutico · Nueva colección"
+          to="/maiten"
           delay={0}
         />
         <HeroBlock
           bg="linear-gradient(145deg, #c8b8a8 0%, #9a8070 60%, #7a6858 100%)"
           label="Viví anCHA"
           sub="El universo de la marca"
-          to="/"
+          to="/vivi-ancha"
           delay={80}
         />
         <HeroBlock
           bg="linear-gradient(145deg, #e0d4c4 0%, #c0a888 100%)"
-          label="Indumentaria"
-          sub="Otoño 2025"
-          to="/indumentaria"
+          label="Anchitas"
+          sub="Para los más chicos"
+          to="/anchitas"
           delay={160}
         />
       </section>
@@ -134,28 +133,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── INDUMENTARIA ── */}
-      <section className="home-section">
-        <div className="home-section__head container">
-          <div>
-            <p className="home-section__eye">Colección</p>
-            <h2 className="home-section__title">Indumentaria</h2>
-          </div>
-          <Link to="/indumentaria" className="home-section__all">Ver todo →</Link>
-        </div>
-        <div className="home-grid home-grid--4 container">
-          {newIndum.map((p, i) => (
-            <ProductCard key={p.id} product={p} size={i === 3 ? 'tall' : 'normal'} />
-          ))}
-        </div>
-      </section>
-
       {/* ── PILLARS ── */}
       <section className="home-pillars container">
         {[
           { num: '01', title: 'Hecho a mano', body: 'Cada pieza construida por artesanos en Buenos Aires.' },
           { num: '02', title: 'Materiales nobles', body: 'Cuero natural curtido al vegetal. Fibras locales seleccionadas.' },
-          { num: '03', title: 'Sin talles imposibles', body: 'Del 35 al 40 en calzado. XS a XL en indumentaria.' },
+          { num: '03', title: 'Sin talles imposibles', body: 'Del 35 al 46 en calzado. Del 26 al 36 en Anchitas.' },
         ].map(p => (
           <div key={p.num} className="pillar">
             <span className="pillar__num">{p.num}</span>
@@ -174,8 +157,11 @@ export default function Home() {
           </div>
           <div className="home-footer__links">
             <Link to="/">Viví anCHA</Link>
-            <Link to="/calzado">Maitén · Mara · Caldén · Zonda</Link>
-            <Link to="/indumentaria">Anchitas</Link>
+            <Link to="/maiten">Maitén</Link>
+            <Link to="/mara">Mara</Link>
+            <Link to="/calden">Caldén</Link>
+            <Link to="/zonda">Zonda</Link>
+            <Link to="/anchitas">Anchitas</Link>
             <Link to="/cambios">Cambios y devoluciones</Link>
           </div>
           <div className="home-footer__social">

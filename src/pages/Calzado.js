@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { calzado, formatPrice } from '../data/products';
+import { calzado } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import './ShopPage.css';
 

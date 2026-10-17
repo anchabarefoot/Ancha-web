@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { calzado, indumentaria, formatPrice } from '../data/products';
+import { calzado, indumentaria } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import './Home.css';
 

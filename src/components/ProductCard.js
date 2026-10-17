@@ -5,7 +5,7 @@ import './ProductCard.css';
 
 export default function ProductCard({ product, size = 'normal' }) {
   const { add } = useCart();
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize] = useState(null);
   const [showSizes, setShowSizes] = useState(false);
   const [added, setAdded] = useState(false);
   const [hover, setHover] = useState(false);

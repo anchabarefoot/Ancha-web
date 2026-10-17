@@ -19,6 +19,35 @@
   pointer-events: none;
 }
 
+.home-hero__stacked-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-logo-an {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.8rem);
+  font-weight: 200;
+  letter-spacing: 0.55em;
+  text-transform: lowercase;
+  color: rgba(255,255,255,0.85);
+}
+
+.hero-logo-cha {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(4rem, 14vw, 11rem);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 0.9;
+}
+
 .home-hero__eyebrow {
   font-size: 0.7rem;
   letter-spacing: 0.22em;

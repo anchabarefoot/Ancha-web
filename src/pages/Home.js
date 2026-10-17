@@ -71,6 +71,10 @@ export default function Home() {
     <div className="home">
       {/* ── HERO ── */}
       <section className="home-hero">
+        <div className="home-hero__stacked-logo">
+          <span className="hero-logo-an">an</span>
+          <span className="hero-logo-cha">CHA</span>
+        </div>
         <div className="home-hero__eyebrow">Otoño · Invierno 2025</div>
         <h1 className="home-hero__title">
           VIVI anCHA
@@ -176,7 +180,7 @@ export default function Home() {
             <Link to="/cambios">Cambios y devoluciones</Link>
           </div>
           <div className="home-footer__social">
-            <a href="https://instagram.com/viviancha.ar" target="_blank" rel="noreferrer">@viviancha.ar</a>
+            <a href="https://instagram.com/viviancha" target="_blank" rel="noreferrer">@viviancha</a>
           </div>
         </div>
         <div className="home-footer__copy container">

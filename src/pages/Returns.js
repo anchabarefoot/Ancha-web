@@ -269,7 +269,7 @@ export default function Returns() {
           <div className="returns-info__block">
             <h3>¿Tenés dudas?</h3>
             <p>Escribinos a <a href="mailto:viviancha.ar@gmail.com">viviancha.ar@gmail.com</a><br />
-            o por Instagram <a href="https://instagram.com/viviancha.ar" target="_blank" rel="noreferrer">@viviancha.ar</a></p>
+            o por Instagram <a href="https://instagram.com/viviancha" target="_blank" rel="noreferrer">@viviancha</a></p>
           </div>
         </div>
       </div>

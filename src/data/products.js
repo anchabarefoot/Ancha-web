@@ -28,10 +28,14 @@ export const calzado = [
     images: [
       '/images/maiten-natural.jpg',
       '/images/maiten-gris.jpg',
+      '/images/maiten-verde-1.jpg',
+      '/images/maiten-verde-2.jpg',
+      '/images/maiten-verde-3.jpg',
     ],
     colorImages: {
       natural: ['/images/maiten-natural.jpg'],
       gris:    ['/images/maiten-gris.jpg'],
+      verde:   ['/images/maiten-verde-1.jpg', '/images/maiten-verde-2.jpg', '/images/maiten-verde-3.jpg'],
     },
     color1: '#E8DCC4',
     color2: '#9A9A96',

@@ -5,7 +5,7 @@ export default function ViviAncha() {
   return (
     <div className="vivi-page">
       <div className="vivi-hero">
-        <h1 className="vivi-title">Vivi anCHA</h1>
+        <h1 className="vivi-title">VIVI anCHA</h1>
       </div>
       <div className="vivi-body container">
         <div className="vivi-manifesto">
@@ -14,7 +14,7 @@ export default function ViviAncha() {
           <p>Sin forzar. Sin apretar. Sin encajar.</p>
           <p>Creemos en habitar el presente, movernos con libertad y hacer lugar a lo que somos.</p>
           <p className="vivi-cierre">Hoy. Acá. Ahora.</p>
-          <p className="vivi-firma">Vivi anCHA.</p>
+          <p className="vivi-firma">VIVI anCHA.</p>
         </div>
       </div>
     </div>

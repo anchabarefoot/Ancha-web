@@ -73,7 +73,7 @@ export default function Home() {
       <section className="home-hero">
         <div className="home-hero__eyebrow">Otoño · Invierno 2025</div>
         <h1 className="home-hero__title">
-          Vivi anCHA
+          VIVI anCHA
         </h1>
         <p className="home-hero__body">
           anCHA nace de un encuentro magnético, casi ineludible.<br />
@@ -137,9 +137,9 @@ export default function Home() {
         <div className="home-banner__img" style={{ background: 'linear-gradient(120deg, #2a2018 0%, #4a3828 60%, #3a2818 100%)' }}>
           <div className="home-banner__txt">
             <p className="home-banner__eye">anCHA · Caseros, Bs. As.</p>
-            <h2>Aceptando lo que viene,<br /><em>dando espacio a cada forma</em></h2>
+            <h2>Aceptando lo que viene,<br />dando espacio a cada forma</h2>
             <p>Sin forzar. Sin apretar. Sin encajar. anCHA nace de una forma compartida de transitar la vida: con naturalidad, ligereza y libertad.</p>
-            <Link to="/vivi-ancha" className="home-banner__btn">Vivi anCHA</Link>
+            <Link to="/vivi-ancha" className="home-banner__btn">VIVI anCHA</Link>
           </div>
         </div>
       </section>
@@ -167,7 +167,7 @@ export default function Home() {
             <p>Caseros, Bs. As.<br />viviancha.ar@gmail.com<br />11 3297 7252</p>
           </div>
           <div className="home-footer__links">
-            <Link to="/">Vivi anCHA</Link>
+            <Link to="/">VIVI anCHA</Link>
             <Link to="/maiten">Maitén</Link>
             <Link to="/mara">Mara</Link>
             <Link to="/calden">Caldén</Link>

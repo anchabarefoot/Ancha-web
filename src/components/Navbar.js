@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const LINKS = [
-  { to: '/vivi-ancha',  label: 'Vivi anCHA' },
+  { to: '/vivi-ancha',  label: 'VIVI anCHA' },
   { to: '/maiten',      label: 'Maitén' },
   { to: '/mara',        label: 'Mara' },
   { to: '/calden',      label: 'Caldén' },
@@ -55,7 +55,7 @@ export default function Navbar() {
         </button>
 
         {/* Logo */}
-        <Link to="/" className="navbar__logo">anCHA</Link>
+        <Link to="/" className="navbar__logo"><span className="logo-an">an</span><span className="logo-cha">CHA</span></Link>
 
         {/* Desktop nav */}
         <nav className="navbar__nav" ref={navRef}>

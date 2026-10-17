@@ -27,7 +27,6 @@
 .navbar__logo {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
-  font-size: 1.65rem;
   letter-spacing: 0.18em;
   color: var(--text);
   position: absolute;
@@ -35,6 +34,21 @@
   transform: translateX(-50%);
   white-space: nowrap;
   transition: color 0.3s;
+  display: flex;
+  align-items: baseline;
+  gap: 0.04em;
+}
+
+.logo-an {
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+}
+
+.logo-cha {
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
 }
 
 .navbar--top .navbar__logo { color: var(--white); }

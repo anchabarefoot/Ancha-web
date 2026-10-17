@@ -32,19 +32,15 @@
 
 .home-hero__title {
   font-family: 'Raleway', sans-serif;
-  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-size: clamp(3rem, 10vw, 9rem);
   font-weight: 200;
   line-height: 1.0;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: #ffffff;
   margin-bottom: 32px;
   position: relative;
   z-index: 1;
-}
-
-.home-hero__title em {
-  font-style: italic;
-  color: var(--gold);
 }
 
 .home-hero__body {
@@ -109,12 +105,13 @@
 
 .hero-block__label {
   font-family: 'Raleway', sans-serif;
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
   font-weight: 200;
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 14px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .hero-block__cta {
@@ -182,6 +179,8 @@
   font-size: 2.2rem;
   font-weight: 200;
   color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .home-section__all {
@@ -227,16 +226,13 @@
 
 .home-banner__txt h2 {
   font-family: 'Raleway', sans-serif;
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 3.6rem);
   font-weight: 200;
   color: var(--white);
-  line-height: 1.1;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin-bottom: 20px;
-}
-
-.home-banner__txt h2 em {
-  font-style: italic;
-  color: var(--sand);
 }
 
 .home-banner__txt p {

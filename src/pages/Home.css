@@ -341,6 +341,15 @@
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
+.home-footer__isologo {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 16px;
+  opacity: 0.85;
+  filter: brightness(0) invert(1);
+}
+
 .home-footer__logo {
   font-family: 'Raleway', sans-serif;
   font-size: 2rem;

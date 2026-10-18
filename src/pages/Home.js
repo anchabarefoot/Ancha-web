@@ -4,6 +4,60 @@ import { calzado } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import './Home.css';
 
+// Falling glitter canvas for banner
+function GlitterCanvas() {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animId;
+    const particles = [];
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    for (let i = 0; i < 140; i++) {
+      particles.push({
+        x: Math.random() * (canvas.width || 800),
+        y: Math.random() * (canvas.height || 500),
+        size: Math.random() * 2.8 + 0.8,
+        speed: Math.random() * 1.0 + 0.25,
+        drift: (Math.random() - 0.5) * 0.35,
+        opacity: Math.random() * 0.75 + 0.25,
+        glow: Math.random() > 0.6,
+        hue: Math.random() * 28 + 36,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const t = Date.now() / 900;
+      particles.forEach(p => {
+        p.y += p.speed;
+        p.x += p.drift;
+        if (p.y > canvas.height + 10) { p.y = -10; p.x = Math.random() * canvas.width; }
+        if (p.x < -10) p.x = canvas.width + 10;
+        if (p.x > canvas.width + 10) p.x = -10;
+        ctx.save();
+        ctx.globalAlpha = p.opacity * (0.55 + 0.45 * Math.sin(t + p.phase));
+        if (p.glow) { ctx.shadowBlur = p.size * 7; ctx.shadowColor = `hsl(${p.hue},90%,72%)`; }
+        ctx.fillStyle = `hsl(${p.hue},82%,62%)`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+      animId = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize); };
+  }, []);
+  return <canvas ref={canvasRef} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }} />;
+}
+
 // Hero parallax image block
 function HeroBlock({ img, bg, label, sub, to, delay = 0 }) {
   const ref = useRef(null);
@@ -31,17 +85,19 @@ function HeroBlock({ img, bg, label, sub, to, delay = 0 }) {
   const imgStyle = img
     ? {
         backgroundImage: `url(${img})`,
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
         backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#f0ebe2',
         transform: hover
-          ? `scale(1.07) translate(${(mpos.x - 50) * -0.05}%, ${(mpos.y - 50) * -0.05 + offset * 0.3}px)`
-          : `scale(1.02) translateY(${offset}px)`,
+          ? `scale(1.04) translate(${(mpos.x - 50) * -0.03}%, ${(mpos.y - 50) * -0.03 + offset * 0.2}px)`
+          : `scale(1.0) translateY(${offset * 0.5}px)`,
       }
     : {
         background: bg,
         transform: hover
-          ? `scale(1.07) translate(${(mpos.x - 50) * -0.05}%, ${(mpos.y - 50) * -0.05 + offset * 0.3}px)`
-          : `scale(1.02) translateY(${offset}px)`,
+          ? `scale(1.04) translate(${(mpos.x - 50) * -0.03}%, ${(mpos.y - 50) * -0.03 + offset * 0.2}px)`
+          : `scale(1.0) translateY(${offset * 0.5}px)`,
       };
 
   return (
@@ -136,6 +192,7 @@ export default function Home() {
       {/* ── BANNER EDITORIAL ── */}
       <section className="home-banner">
         <div className="home-banner__img">
+          <GlitterCanvas />
           <div className="home-banner__txt">
             <p className="home-banner__eye">anCHA</p>
             <h2>Aceptando lo que viene,<br />dando espacio a cada forma</h2>

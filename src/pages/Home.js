@@ -168,7 +168,7 @@ export default function Home() {
 
       {/* ── STRIP MARQUEE ── */}
       <div className="home-strip" aria-hidden>
-        {Array(6).fill('anCHA · Hecho a mano en Argentina · ').map((t, i) => (
+        {Array(6).fill('anCHA · Barefoot · Industria Argentina · ').map((t, i) => (
           <span key={i}>{t}</span>
         ))}
       </div>

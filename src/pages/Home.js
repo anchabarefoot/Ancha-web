@@ -55,6 +55,7 @@ function HeroBlock({ img, bg, label, sub, to, delay = 0 }) {
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="hero-block__img" style={imgStyle} />
+      <div className="hero-block__tint" />
       <div className="hero-block__over">
         <p className="hero-block__sub">{sub}</p>
         <h2 className="hero-block__label">{label}</h2>

@@ -15,7 +15,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(139,125,90,0.75) 0%, rgba(139,125,90,0.20) 50%, transparent 80%);
   pointer-events: none;
 }
 

@@ -164,7 +164,7 @@ export default function Home() {
       <footer className="home-footer">
         <div className="home-footer__inner container">
           <div className="home-footer__brand">
-            <img src="/images/isologo.jpg" alt="anCHA" className="home-footer__isologo" />
+            <img src="/images/logo-ancha.png" alt="anCHA" className="home-footer__isologo" />
             <p>viviancha.ar@gmail.com<br />11 3297 7252</p>
           </div>
           <div className="home-footer__links">

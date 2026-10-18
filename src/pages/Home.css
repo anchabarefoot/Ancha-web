@@ -228,72 +228,82 @@
   overflow: hidden;
 }
 
-/* Puntos de glitter */
+/* Ondas de tela hacia abajo */
 .home-banner__img::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1.5px 1.5px at  8% 12%, rgba(215,180,90,0.95), transparent),
-    radial-gradient(1px   1px   at 22% 35%, rgba(245,205,120,0.80), transparent),
-    radial-gradient(2px   2px   at 15% 68%, rgba(200,160,70,0.70),  transparent),
-    radial-gradient(1px   1px   at 40% 20%, rgba(255,220,140,0.90), transparent),
-    radial-gradient(1.5px 1.5px at 55% 45%, rgba(215,182,95,0.85),  transparent),
-    radial-gradient(1px   1px   at 70% 15%, rgba(240,205,110,0.75), transparent),
-    radial-gradient(2px   2px   at 85% 60%, rgba(205,168,82,0.80),  transparent),
-    radial-gradient(1px   1px   at 92% 30%, rgba(255,225,150,0.90), transparent),
-    radial-gradient(1.5px 1.5px at 30% 80%, rgba(210,175,90,0.70),  transparent),
-    radial-gradient(1px   1px   at 65% 75%, rgba(235,195,105,0.85), transparent),
-    radial-gradient(2px   2px   at 48% 55%, rgba(220,185,100,0.75), transparent),
-    radial-gradient(1px   1px   at 75% 88%, rgba(200,160,70,0.80),  transparent),
-    radial-gradient(1.5px 1.5px at 12% 45%, rgba(240,200,120,0.65), transparent),
-    radial-gradient(1px   1px   at 88% 72%, rgba(215,175,85,0.90),  transparent),
-    radial-gradient(2px   2px   at 35% 15%, rgba(255,210,130,0.70), transparent),
-    radial-gradient(1px   1px   at 58% 92%, rgba(200,165,80,0.85),  transparent),
-    radial-gradient(1.5px 1.5px at 25% 55%, rgba(235,195,105,0.75), transparent),
-    radial-gradient(1px   1px   at 80% 40%, rgba(210,175,90,0.80),  transparent),
-    radial-gradient(2px   2px   at  5% 85%, rgba(240,205,110,0.65), transparent),
-    radial-gradient(1px   1px   at 95% 10%, rgba(220,185,100,0.90), transparent),
-    radial-gradient(1.5px 1.5px at 43% 70%, rgba(250,215,135,0.80), transparent),
-    radial-gradient(1px   1px   at 60% 28%, rgba(205,168,82,0.70),  transparent),
-    radial-gradient(2px   2px   at 18% 90%, rgba(235,195,105,0.75), transparent),
-    radial-gradient(1px   1px   at 50% 5%,  rgba(255,225,150,0.85), transparent);
-  background-size: 100% 100%;
-  animation: glitter-twinkle 3.5s ease-in-out infinite alternate;
+  left: -5%; right: -5%;
+  top: -60%; height: 280%;
+  background: repeating-linear-gradient(
+    173deg,
+    transparent           0px,
+    rgba(215,185,100,0.09) 22px,
+    rgba(200,165,78,0.06)  28px,
+    transparent           52px,
+    rgba(210,178,90,0.07)  76px,
+    rgba(195,160,72,0.05)  82px,
+    transparent           108px,
+    rgba(225,190,105,0.06) 132px,
+    transparent           158px
+  );
+  animation: fabric-scroll 8s linear infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Barrido de brillo */
+@keyframes fabric-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(38%); }
+}
+
+/* Brillitos más grandes, más cantidad, que se mueven */
 .home-banner__img::after {
   content: '';
   position: absolute;
-  top: 0; bottom: 0;
-  left: -60%;
-  width: 40%;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(220,185,100,0.10) 45%,
-    rgba(255,225,150,0.22) 50%,
-    rgba(220,185,100,0.10) 55%,
-    transparent 70%
-  );
-  animation: shimmer-sweep 5s ease-in-out infinite;
+  inset: -4%;
+  background-image:
+    radial-gradient(3px   3px   at  6% 10%, rgba(255,225,130,0.95), transparent),
+    radial-gradient(2px   2px   at 18% 32%, rgba(245,205,110,0.85), transparent),
+    radial-gradient(4px   4px   at 13% 65%, rgba(210,175,85,0.80),  transparent),
+    radial-gradient(2.5px 2.5px at 38% 18%, rgba(255,220,140,0.90), transparent),
+    radial-gradient(3px   3px   at 52% 42%, rgba(220,188,98,0.88),  transparent),
+    radial-gradient(2px   2px   at 68% 12%, rgba(245,210,115,0.80), transparent),
+    radial-gradient(4px   4px   at 82% 58%, rgba(210,172,84,0.85),  transparent),
+    radial-gradient(3px   3px   at 90% 28%, rgba(255,228,145,0.92), transparent),
+    radial-gradient(2.5px 2.5px at 28% 78%, rgba(215,180,90,0.78),  transparent),
+    radial-gradient(3px   3px   at 62% 72%, rgba(240,200,108,0.88), transparent),
+    radial-gradient(4px   4px   at 46% 52%, rgba(225,188,98,0.80),  transparent),
+    radial-gradient(2px   2px   at 73% 85%, rgba(205,168,82,0.85),  transparent),
+    radial-gradient(3px   3px   at 10% 42%, rgba(245,205,118,0.72), transparent),
+    radial-gradient(2.5px 2.5px at 86% 70%, rgba(220,182,88,0.92),  transparent),
+    radial-gradient(4px   4px   at 33% 12%, rgba(255,215,132,0.78), transparent),
+    radial-gradient(3px   3px   at 55% 90%, rgba(205,168,82,0.88),  transparent),
+    radial-gradient(2px   2px   at 22% 52%, rgba(240,200,108,0.80), transparent),
+    radial-gradient(3.5px 3.5px at 78% 38%, rgba(215,178,88,0.85),  transparent),
+    radial-gradient(2px   2px   at  3% 82%, rgba(245,210,115,0.70), transparent),
+    radial-gradient(4px   4px   at 94%  8%, rgba(225,188,98,0.92),  transparent),
+    radial-gradient(3px   3px   at 41% 68%, rgba(255,225,138,0.82), transparent),
+    radial-gradient(2.5px 2.5px at 58% 25%, rgba(210,172,84,0.75),  transparent),
+    radial-gradient(3px   3px   at 16% 88%, rgba(240,202,110,0.80), transparent),
+    radial-gradient(2px   2px   at 48%  3%, rgba(255,228,148,0.88), transparent),
+    radial-gradient(4px   4px   at 70% 48%, rgba(215,180,90,0.78),  transparent),
+    radial-gradient(3px   3px   at 25% 22%, rgba(245,208,112,0.85), transparent),
+    radial-gradient(2px   2px   at 88% 48%, rgba(205,168,82,0.72),  transparent),
+    radial-gradient(3.5px 3.5px at  8% 58%, rgba(255,222,135,0.88), transparent),
+    radial-gradient(2.5px 2.5px at 36% 95%, rgba(220,185,96,0.80),  transparent),
+    radial-gradient(3px   3px   at 64%  6%, rgba(240,205,110,0.90), transparent);
+  background-size: 100% 100%;
+  animation: sparkle-drift 7s ease-in-out infinite alternate;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
-@keyframes glitter-twinkle {
-  0%   { opacity: 0.55; }
-  40%  { opacity: 1.00; }
-  70%  { opacity: 0.70; }
-  100% { opacity: 0.90; }
-}
-
-@keyframes shimmer-sweep {
-  0%   { left: -60%; }
-  100% { left: 120%; }
+@keyframes sparkle-drift {
+  0%   { transform: translate(0px,   0px);  opacity: 0.60; }
+  20%  { transform: translate(5px,  -7px);  opacity: 1.00; }
+  45%  { transform: translate(-4px,  4px);  opacity: 0.75; }
+  70%  { transform: translate(6px,  -3px);  opacity: 0.92; }
+  100% { transform: translate(-5px,  6px);  opacity: 0.80; }
 }
 
 .home-banner__txt { max-width: 440px; position: relative; z-index: 1; }

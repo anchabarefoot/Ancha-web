@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { COLORS, formatPrice } from '../data/products';
+import SizeGuide from '../components/SizeGuide';
 import './ProductPage.css';
 
 export default function ProductPage({ product }) {
@@ -94,24 +95,7 @@ export default function ProductPage({ product }) {
           {added ? '✓ Agregado al carrito' : 'Agregar al carrito'}
         </button>
 
-        {/* Size guide */}
-        <div className="pp-sizeguide">
-          <p className="pp-sizeguide__title">Guía de talles</p>
-          <table className="pp-sizeguide__table">
-            <thead>
-              <tr><th>Talle</th><th>CM</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>35/36</td><td>22.5 – 23.5</td></tr>
-              <tr><td>37/38</td><td>24 – 25</td></tr>
-              <tr><td>39/40</td><td>25.5 – 26.5</td></tr>
-              <tr><td>41/42</td><td>27 – 28</td></tr>
-              <tr><td>43/44</td><td>28.5 – 29.5</td></tr>
-              <tr><td>45/46</td><td>30 – 31</td></tr>
-            </tbody>
-          </table>
-          <p className="pp-sizeguide__note">Medí tu pie en cm desde el talón hasta el dedo más largo.</p>
-        </div>
+        <SizeGuide type={product.sizeGuide || 'barefoot'} />
       </div>
     </div>
   );

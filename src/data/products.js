@@ -39,6 +39,7 @@ export const calzado = [
     },
     color1: '#E8DCC4',
     color2: '#9A9A96',
+    sizeGuide: 'barefoot',
     tag: 'Nuevo',
   },
   {
@@ -61,6 +62,7 @@ export const calzado = [
     },
     color1: '#4A6080',
     color2: '#1C1C1C',
+    sizeGuide: 'barefoot',
     tag: null,
   },
   {
@@ -80,6 +82,7 @@ export const calzado = [
     },
     color1: '#2F3E55',
     color2: '#5E6B4A',
+    sizeGuide: 'barefoot',
     tag: null,
   },
   {
@@ -105,6 +108,7 @@ export const calzado = [
     },
     color1: '#9A9A96',
     color2: '#5A3A26',
+    sizeGuide: 'barefoot',
     tag: null,
   },
   {
@@ -128,6 +132,7 @@ export const calzado = [
     },
     color1: '#E8DCC4',
     color2: '#5E6B4A',
+    sizeGuide: 'delta',
     tag: null,
   },
   {
@@ -143,6 +148,7 @@ export const calzado = [
     colorImages: { natural: ['/images/zonda-natural.jpg'] },
     color1: '#E8DCC4',
     color2: '#A0673A',
+    sizeGuide: 'zonda',
     tag: null,
   },
 ];

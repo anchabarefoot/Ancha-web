@@ -1,0 +1,45 @@
+.sg {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.sg__toggle {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sg__toggle:hover { color: var(--text); }
+
+.sg__arrow { font-size: 0.8rem; }
+
+.sg__body {
+  padding-top: 16px;
+}
+
+.sg__note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 300px;
+}
+
+.sg__svg {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  color: var(--text);
+  margin: 0 auto;
+}

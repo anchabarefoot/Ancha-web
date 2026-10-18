@@ -46,7 +46,7 @@
 
 .vivi-firma {
   font-size: clamp(1.4rem, 3vw, 2rem) !important;
-  font-style: italic;
+  font-style: normal;
   color: var(--gold) !important;
   margin-bottom: 0 !important;
 }

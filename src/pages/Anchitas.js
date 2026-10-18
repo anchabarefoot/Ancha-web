@@ -1,24 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { anchitas, COLORS, formatPrice } from '../data/products';
-import './ShopPage.css';
-import './ProductPage.css';
+import './Anchitas.css';
 
 function AnchitaCard({ product }) {
+  const [activeImg, setActiveImg] = useState(0);
+  const imgs = product.images || [];
+
   return (
-    <div style={{ borderTop: '1px solid var(--border)', paddingTop: 24, marginBottom: 32 }}>
-      <p style={{ fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--taupe)', marginBottom: 4 }}>{product.sub}</p>
-      <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.8rem', fontWeight: 300, marginBottom: 8 }}>{product.name}</h2>
-      <p style={{ fontSize: '0.88rem', lineHeight: 1.7, color: 'var(--text-muted)', marginBottom: 12 }}>{product.description}</p>
-      <p style={{ fontSize: '1rem', marginBottom: 10 }}>{formatPrice(product.price)}</p>
-      <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
-        {product.colors.map(c => (
-          <span key={c} style={{ width: 18, height: 18, borderRadius: '50%', background: COLORS[c]?.hex || '#ccc', border: '1px solid rgba(0,0,0,0.1)', display: 'inline-block' }} title={COLORS[c]?.label} />
-        ))}
+    <div className="anchita-card">
+      <div className="anchita-card__gallery">
+        <div className="anchita-card__main">
+          {imgs.length > 0 ? (
+            <img src={imgs[activeImg]} alt={product.name} className="anchita-card__photo" />
+          ) : (
+            <div className="anchita-card__placeholder" style={{ background: `linear-gradient(135deg, ${product.color1} 0%, ${product.color2} 100%)` }}>
+              <span>{product.name.charAt(0)}</span>
+            </div>
+          )}
+        </div>
+        {imgs.length > 1 && (
+          <div className="anchita-card__thumbs">
+            {imgs.map((src, i) => (
+              <button key={i} className={`anchita-card__thumb ${i === activeImg ? 'active' : ''}`} onClick={() => setActiveImg(i)}>
+                <img src={src} alt="" />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-        {product.sizes.map(s => (
-          <span key={s} style={{ padding: '5px 10px', border: '1px solid var(--border-dark)', fontSize: '0.75rem' }}>{s}</span>
-        ))}
+
+      <div className="anchita-card__info">
+        <p className="anchita-card__sub">{product.sub}</p>
+        <h2 className="anchita-card__name">{product.name}</h2>
+        <p className="anchita-card__desc">{product.description}</p>
+        <p className="anchita-card__price">{formatPrice(product.price)}</p>
+
+        <div className="anchita-card__colors">
+          {product.colors.map(c => (
+            <span
+              key={c}
+              className="anchita-card__dot"
+              style={{ background: COLORS[c]?.hex || '#ccc' }}
+              title={COLORS[c]?.label}
+            />
+          ))}
+        </div>
+
+        <div className="anchita-card__sizes">
+          {product.sizes.map(s => (
+            <span key={s} className="anchita-card__size">{s}</span>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -26,46 +58,46 @@ function AnchitaCard({ product }) {
 
 export default function Anchitas() {
   return (
-    <div className="shop-page">
-      <div className="shop-hero">
+    <div className="anchitas-page">
+      <div className="anchitas-hero">
         <div className="container">
-          <p className="shop-eye">Para los más chicos</p>
-          <h1 className="shop-title">Anchitas</h1>
-          <p className="shop-count">Talles 26 al 36</p>
+          <p className="anchitas-hero__eye">Para los más chicos</p>
+          <h1 className="anchitas-hero__title">Anchitas</h1>
+          <p className="anchitas-hero__sub">Talles 26 al 36</p>
         </div>
       </div>
 
-      <div className="container" style={{ paddingTop: 48, paddingBottom: 80, maxWidth: 800 }}>
+      <div className="anchitas-grid container">
         {anchitas.map(p => <AnchitaCard key={p.id} product={p} />)}
+      </div>
 
-        <div style={{ borderTop: '1px solid var(--border)', paddingTop: 28 }}>
-          <p style={{ fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 16 }}>Guía de talles Anchitas</p>
-          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem', maxWidth: 320 }}>
-            <thead>
-              <tr>
-                <th style={{ textAlign: 'left', padding: '5px 12px 5px 0', borderBottom: '1px solid var(--border)', color: 'var(--text-muted)', fontWeight: 500, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Talle</th>
-                <th style={{ textAlign: 'left', padding: '5px 12px 5px 0', borderBottom: '1px solid var(--border)', color: 'var(--text-muted)', fontWeight: 500, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>CM</th>
-                <th style={{ textAlign: 'left', padding: '5px 0', borderBottom: '1px solid var(--border)', color: 'var(--text-muted)', fontWeight: 500, fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Edad aprox.</th>
+      <div className="anchitas-sizeguide container">
+        <p className="anchitas-sizeguide__title">Guía de talles Anchitas</p>
+        <table className="anchitas-sizeguide__table">
+          <thead>
+            <tr>
+              <th>Talle</th>
+              <th>CM</th>
+              <th>Edad aprox.</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['26/27', '16 – 17', '2-3 años'],
+              ['28/29', '17.5 – 18.5', '4-5 años'],
+              ['30/31', '19 – 20', '6-7 años'],
+              ['32/33', '20.5 – 21.5', '8-9 años'],
+              ['34/35', '22 – 22.5', '10-11 años'],
+              ['35/36', '22.5 – 23.5', '12+ años'],
+            ].map(([t, cm, edad]) => (
+              <tr key={t}>
+                <td>{t}</td>
+                <td>{cm}</td>
+                <td>{edad}</td>
               </tr>
-            </thead>
-            <tbody>
-              {[
-                ['26/27','16 – 17','2-3 años'],
-                ['28/29','17.5 – 18.5','4-5 años'],
-                ['30/31','19 – 20','6-7 años'],
-                ['32/33','20.5 – 21.5','8-9 años'],
-                ['34/35','22 – 22.5','10-11 años'],
-                ['35/36','22.5 – 23.5','12+ años'],
-              ].map(([t, cm, edad]) => (
-                <tr key={t}>
-                  <td style={{ padding: '5px 12px 5px 0', borderBottom: '1px solid var(--border)' }}>{t}</td>
-                  <td style={{ padding: '5px 12px 5px 0', borderBottom: '1px solid var(--border)' }}>{cm}</td>
-                  <td style={{ padding: '5px 0', borderBottom: '1px solid var(--border)', color: 'var(--text-muted)' }}>{edad}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

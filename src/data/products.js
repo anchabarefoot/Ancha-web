@@ -163,10 +163,15 @@ export const anchitas = [
     price: 59900,
     colors: ['natural', 'negro', 'azul', 'verde'],
     sizes: SIZES_ANCHITAS_SPORT,
-    images: [],
-    colorImages: {},
-    color1: '#E8DCC4',
-    color2: '#5E6B4A',
+    images: [
+      '/images/anchitas-sport-negro.jpg',
+      '/images/anchitas-sport-negro-top.jpg',
+    ],
+    colorImages: {
+      negro: ['/images/anchitas-sport-negro.jpg', '/images/anchitas-sport-negro-top.jpg'],
+    },
+    color1: '#1C1C1C',
+    color2: '#E8DCC4',
     tag: null,
   },
   {
@@ -178,8 +183,13 @@ export const anchitas = [
     price: 54900,
     colors: ['natural', 'gris', 'verde'],
     sizes: SIZES_ANCHITAS_LINO,
-    images: [],
-    colorImages: {},
+    images: [
+      '/images/anchitas-lino-natural.jpg',
+      '/images/anchitas-lino-natural-top.jpg',
+    ],
+    colorImages: {
+      natural: ['/images/anchitas-lino-natural.jpg', '/images/anchitas-lino-natural-top.jpg'],
+    },
     color1: '#E8DCC4',
     color2: '#9A9A96',
     tag: null,

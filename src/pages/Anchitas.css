@@ -1,0 +1,208 @@
+.anchitas-page { min-height: 100vh; }
+
+/* Hero */
+.anchitas-hero {
+  padding: calc(var(--nav-h) + 48px) 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+.anchitas-hero__eye {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.anchitas-hero__title {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.anchitas-hero__sub {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* Grid */
+.anchitas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 48px;
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+/* Card */
+.anchita-card {}
+
+.anchita-card__gallery {
+  margin-bottom: 20px;
+}
+
+.anchita-card__main {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--off-white);
+}
+
+.anchita-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 8% 10%;
+}
+
+.anchita-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 3rem;
+  font-weight: 200;
+  color: white;
+  opacity: 0.6;
+}
+
+.anchita-card__thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.anchita-card__thumb {
+  width: 64px;
+  height: 48px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.anchita-card__thumb.active,
+.anchita-card__thumb:hover {
+  opacity: 1;
+  border-color: var(--border-dark);
+}
+.anchita-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.anchita-card__sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 6px;
+}
+
+.anchita-card__name {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.anchita-card__desc {
+  font-size: 0.84rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.anchita-card__price {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.anchita-card__colors {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.anchita-card__dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.12);
+  display: inline-block;
+}
+
+.anchita-card__sizes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.anchita-card__size {
+  padding: 5px 10px;
+  border: 1px solid var(--border-dark);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+/* Size guide */
+.anchitas-sizeguide {
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  padding-bottom: 80px;
+  max-width: 480px;
+}
+
+.anchitas-sizeguide__title {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.anchitas-sizeguide__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.anchitas-sizeguide__table th {
+  text-align: left;
+  padding: 5px 16px 5px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--taupe);
+  font-weight: 400;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.anchitas-sizeguide__table td {
+  padding: 7px 16px 7px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.anchitas-sizeguide__table td:last-child {
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .anchitas-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}

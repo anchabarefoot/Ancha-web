@@ -20,7 +20,7 @@
   width: 100%; height: 100%;
   object-fit: contain;
   object-position: center;
-  padding: 8%;
+  padding: 10% 12%;
   opacity: 0;
   transform: translateX(30px);
   transition: opacity 0.35s ease, transform 0.35s ease;
@@ -66,9 +66,9 @@
   display: inline-block;
 }
 
-.pcard--normal .pcard__img-wrap { aspect-ratio: 4/3; }
-.pcard--tall   .pcard__img-wrap { aspect-ratio: 1/1; }
-.pcard--wide   .pcard__img-wrap { aspect-ratio: 4/3; }
+.pcard--normal .pcard__img-wrap { aspect-ratio: 3/2; }
+.pcard--tall   .pcard__img-wrap { aspect-ratio: 3/2; }
+.pcard--wide   .pcard__img-wrap { aspect-ratio: 3/2; }
 
 /* The actual image layer */
 .pcard__img {

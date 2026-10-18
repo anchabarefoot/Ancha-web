@@ -13,9 +13,9 @@ import './Returns.css';
 // 3. Crear una plantilla con las variables: {{nombre}}, {{email}}, {{modelo}},
 //    {{color_tiene}}, {{talle_tiene}}, {{color_quiere}}, {{talle_quiere}}, {{motivo}}
 // 4. Reemplazar los valores de abajo con los IDs reales
-const EMAILJS_SERVICE_ID  = 'service_ancha';   // reemplazar
-const EMAILJS_TEMPLATE_ID = 'template_cambios'; // reemplazar
-const EMAILJS_PUBLIC_KEY  = 'TU_PUBLIC_KEY';    // reemplazar
+const EMAILJS_SERVICE_ID  = 'service_nzpelnk';
+const EMAILJS_TEMPLATE_ID = 'template_v27tu8t';
+const EMAILJS_PUBLIC_KEY  = '8nHj4qUv_chBr6Qsz';
 
 const MODELOS = ['Maitén', 'Mara', 'Caldén', 'Zonda'];
 const COLORES = Object.entries(COLORS).map(([k, v]) => ({ key: k, ...v }));

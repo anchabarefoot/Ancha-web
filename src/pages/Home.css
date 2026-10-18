@@ -20,7 +20,7 @@
 }
 
 .home-hero__logo-img {
-  width: clamp(160px, 30vw, 320px);
+  width: clamp(200px, 35vw, 380px);
   height: auto;
   object-fit: contain;
   margin-bottom: 40px;

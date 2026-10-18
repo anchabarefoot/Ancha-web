@@ -121,7 +121,7 @@ function HeroBlock({ img, bg, label, sub, to, delay = 0 }) {
 }
 
 export default function Home() {
-  const newCalzado = calzado.slice(0, 4);
+  const newCalzado = calzado;
 
   return (
     <div className="home">
@@ -182,7 +182,7 @@ export default function Home() {
           </div>
           <Link to="/maiten" className="home-section__all">Ver todo →</Link>
         </div>
-        <div className="home-grid home-grid--4 container">
+        <div className="home-grid home-grid--3 container">
           {newCalzado.map((p, i) => (
             <ProductCard key={p.id} product={p} size={i === 0 ? 'tall' : 'normal'} />
           ))}
@@ -227,8 +227,10 @@ export default function Home() {
           <div className="home-footer__links">
             <Link to="/">VIVI anCHA</Link>
             <Link to="/maiten">Maitén</Link>
+            <Link to="/manso">Manso</Link>
             <Link to="/mara">Mara</Link>
             <Link to="/calden">Caldén</Link>
+            <Link to="/bacan">Bacán</Link>
             <Link to="/zonda">Zonda</Link>
             <Link to="/anchitas">Anchitas</Link>
             <Link to="/cambios">Cambios y devoluciones</Link>

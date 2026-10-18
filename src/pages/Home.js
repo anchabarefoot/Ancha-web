@@ -88,7 +88,7 @@ function HeroBlock({ img, bg, label, sub, to, delay = 0 }) {
         backgroundSize: 'contain',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundColor: '#f0ebe2',
+        backgroundColor: '#ffffff',
         transform: hover
           ? `scale(1.04) translate(${(mpos.x - 50) * -0.03}%, ${(mpos.y - 50) * -0.03 + offset * 0.2}px)`
           : `scale(1.0) translateY(${offset * 0.5}px)`,

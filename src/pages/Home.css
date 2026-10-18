@@ -233,7 +233,7 @@
 .home-banner__eye {
   font-size: 0.65rem;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--gold);
   margin-bottom: 20px;
 }

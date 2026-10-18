@@ -135,9 +135,9 @@ export default function Home() {
 
       {/* ── BANNER EDITORIAL ── */}
       <section className="home-banner">
-        <div className="home-banner__img" style={{ background: 'linear-gradient(120deg, #2a2018 0%, #4a3828 60%, #3a2818 100%)' }}>
+        <div className="home-banner__img">
           <div className="home-banner__txt">
-            <p className="home-banner__eye">anCHA · Caseros, Bs. As.</p>
+            <p className="home-banner__eye">anCHA</p>
             <h2>Aceptando lo que viene,<br />dando espacio a cada forma</h2>
             <p>Sin forzar. Sin apretar. Sin encajar. anCHA nace de una forma compartida de transitar la vida: con naturalidad, ligereza y libertad.</p>
             <Link to="/vivi-ancha" className="home-banner__btn">VIVI anCHA</Link>

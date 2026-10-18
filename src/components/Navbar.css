@@ -17,10 +17,11 @@
 }
 
 .navbar__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   height: var(--nav-h);
-  position: relative;
+  gap: 24px;
 }
 
 /* Logo */
@@ -29,14 +30,12 @@
   font-weight: 400;
   letter-spacing: 0.18em;
   color: var(--text);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   white-space: nowrap;
   transition: color 0.3s;
   display: flex;
   align-items: baseline;
   gap: 0.04em;
+  z-index: 1;
 }
 
 .logo-an {
@@ -56,9 +55,9 @@
 /* Desktop nav */
 .navbar__nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.6rem;
   position: relative;
-  margin-right: auto;
+  justify-content: center;
 }
 
 .nav-link {
@@ -94,7 +93,6 @@
 /* Cart */
 .navbar__cart {
   position: relative;
-  margin-left: auto;
   display: flex;
   align-items: center;
   color: var(--text);

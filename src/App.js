@@ -10,6 +10,7 @@ import Maiten from './pages/Maiten';
 import Manso from './pages/Manso';
 import Mara from './pages/Mara';
 import Calden from './pages/Calden';
+import Bacan from './pages/Bacan';
 import Zonda from './pages/Zonda';
 import Anchitas from './pages/Anchitas';
 import Returns from './pages/Returns';
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/manso" element={<Manso />} />
             <Route path="/mara" element={<Mara />} />
             <Route path="/calden" element={<Calden />} />
+            <Route path="/bacan" element={<Bacan />} />
             <Route path="/zonda" element={<Zonda />} />
             <Route path="/anchitas" element={<Anchitas />} />
             <Route path="/cambios" element={<Returns />} />

@@ -9,6 +9,7 @@ const LINKS = [
   { to: '/manso',       label: 'Manso' },
   { to: '/mara',        label: 'Mara' },
   { to: '/calden',      label: 'Caldén' },
+  { to: '/bacan',        label: 'Bacán' },
   { to: '/zonda',       label: 'Zonda' },
   { to: '/anchitas',    label: 'Anchitas' },
   { to: '/cambios',     label: 'Cambios' },

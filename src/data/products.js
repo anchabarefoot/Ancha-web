@@ -108,6 +108,27 @@ export const calzado = [
     tag: null,
   },
   {
+    id: 'bacan',
+    name: 'Bacán',
+    category: 'calzado',
+    sub: 'Náutico',
+    description: 'El náutico de siempre, con toda la personalidad de anCHA. Lona resistente, suela de goma y un fit que acompaña.',
+    price: 89900,
+    colors: ['natural', 'negro', 'verde', 'azul', 'mostaza'],
+    sizes: SIZES_CALZADO,
+    images: [
+      '/images/bacan-beige.jpg',
+      '/images/bacan-colores.jpg',
+    ],
+    colorImages: {
+      natural: ['/images/bacan-beige.jpg'],
+      negro:   ['/images/bacan-colores.jpg'],
+    },
+    color1: '#E8DCC4',
+    color2: '#1C1C1C',
+    tag: null,
+  },
+  {
     id: 'zonda',
     name: 'Zonda',
     category: 'calzado',

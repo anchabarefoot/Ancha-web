@@ -109,7 +109,7 @@
   align-items: center;
   justify-content: flex-end;
   padding: 28px 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+  background: linear-gradient(to top, rgba(160,120,70,0.72) 0%, rgba(180,145,90,0.30) 35%, transparent 60%);
   text-align: center;
   z-index: 2;
 }

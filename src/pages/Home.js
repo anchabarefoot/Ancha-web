@@ -166,7 +166,7 @@ export default function Home() {
         <div className="home-footer__inner container">
           <div className="home-footer__brand">
             <img src="/images/isologo.jpg" alt="anCHA" className="home-footer__isologo" />
-            <p>Caseros, Bs. As.<br />viviancha.ar@gmail.com<br />11 3297 7252</p>
+            <p>viviancha.ar@gmail.com<br />11 3297 7252</p>
           </div>
           <div className="home-footer__links">
             <Link to="/">VIVI anCHA</Link>

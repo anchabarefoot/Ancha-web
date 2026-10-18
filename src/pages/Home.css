@@ -100,7 +100,7 @@
   align-items: center;
   justify-content: flex-end;
   padding: 28px 20px;
-  background: linear-gradient(to top, rgba(139,125,90,0.88) 0%, rgba(139,125,90,0.12) 45%, transparent 65%);
+  background: linear-gradient(to top, rgba(139,125,90,0.72) 0%, rgba(139,125,90,0.28) 30%, rgba(139,125,90,0.08) 55%, transparent 75%);
   text-align: center;
   z-index: 2;
 }

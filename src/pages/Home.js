@@ -71,10 +71,7 @@ export default function Home() {
     <div className="home">
       {/* ── HERO ── */}
       <section className="home-hero" style={{ backgroundImage: 'url(/images/maiten-natural.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <div className="home-hero__stacked-logo">
-          <span className="hero-logo-an">an</span>
-          <span className="hero-logo-cha">CHA</span>
-        </div>
+        <img src="/images/logo-ancha.png" alt="anCHA" className="home-hero__logo-img" />
         <div className="home-hero__eyebrow">Otoño · Invierno 2025</div>
         <h1 className="home-hero__title">
           VIVI anCHA

@@ -26,31 +26,20 @@
 
 /* Logo */
 .navbar__logo {
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  color: var(--text);
-  white-space: nowrap;
-  transition: color 0.3s;
   display: flex;
-  align-items: baseline;
-  gap: 0.04em;
+  align-items: center;
   z-index: 1;
 }
 
-.logo-an {
-  font-size: 0.9rem;
-  font-weight: 300;
-  letter-spacing: 0.14em;
+.navbar__logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
 }
 
-.logo-cha {
-  font-size: 1.65rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
+.navbar--top .navbar__logo-img {
+  filter: brightness(0) invert(1);
 }
-
-.navbar--top .navbar__logo { color: var(--white); }
 
 /* Desktop nav */
 .navbar__nav {

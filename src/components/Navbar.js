@@ -56,7 +56,9 @@ export default function Navbar() {
         </button>
 
         {/* Logo */}
-        <Link to="/" className="navbar__logo"><span className="logo-an">an</span><span className="logo-cha">CHA</span></Link>
+        <Link to="/" className="navbar__logo">
+          <img src="/images/logo-ancha.png" alt="anCHA" className="navbar__logo-img" />
+        </Link>
 
         {/* Desktop nav */}
         <nav className="navbar__nav" ref={navRef}>

@@ -206,8 +206,8 @@ export default function Home() {
       <section className="home-pillars container">
         {[
           { num: '01', title: 'Diseño desde la base', body: 'Inyección de TR', img: '/images/pillar-bases.png', sepia: true },
-          { num: '02', title: 'Producción y aparado', body: 'Cada pieza construida por artesanos en Buenos Aires.', img: '/images/pillar-aparado.jpg', sepia: false },
-          { num: '03', title: 'Sin talles imposibles', body: 'Del 35 al 46 en calzado. Del 26 al 36 en Anchitas.' },
+          { num: '02', title: 'Producción y aparado', body: 'Cada pieza construida por artesanos en Buenos Aires.', img: '/images/pillar-aparado.jpg', sepia: true },
+          { num: '03', title: 'Venta final y producción de marcas', body: '', img: '/images/pillar-caja.jpg', sepia: true },
         ].map(p => (
           <div key={p.num} className="pillar">
             {p.img && (

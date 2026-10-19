@@ -14,7 +14,7 @@ import './Returns.css';
 //    {{color_tiene}}, {{talle_tiene}}, {{color_quiere}}, {{talle_quiere}}, {{motivo}}
 // 4. Reemplazar los valores de abajo con los IDs reales
 const EMAILJS_SERVICE_ID  = 'service_nzpelnk';
-const EMAILJS_TEMPLATE_ID = 'template_v27tu8t';
+const EMAILJS_TEMPLATE_ID = 'template_e7khe86';
 const EMAILJS_PUBLIC_KEY  = '8nHj4qUv_chBr6Qsz';
 
 const MODELOS = [
@@ -83,7 +83,7 @@ export default function Returns() {
       setStep(3);
     } catch (err) {
       console.error('EmailJS error:', err);
-      setError(`Error: ${err?.text || err?.message || JSON.stringify(err)}`);
+      setError('Hubo un error al enviar. Escribinos directamente a viviancha.ar@gmail.com');
     } finally {
       setSending(false);
     }

@@ -35,11 +35,26 @@
   max-width: 300px;
 }
 
-.sg__svg {
-  display: block;
+.sg__pdf-wrap {
   width: 100%;
-  max-width: 180px;
-  height: auto;
-  color: var(--text);
-  margin: 0 auto;
+  aspect-ratio: 8.5/11;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.sg__pdf {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.sg__download {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
 }

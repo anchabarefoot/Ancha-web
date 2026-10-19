@@ -11,7 +11,8 @@ export const COLORS = {
   jean:      { label: 'Jean',      hex: '#4A6080' },
 };
 
-export const SIZES_CALZADO = ['35/36', '37/38', '39/40', '41/42', '43/44', '45/46'];
+export const SIZES_CALZADO  = ['35/36', '37/38', '39/40', '41/42', '43/44', '45/46'];
+export const SIZES_DELTA    = ['35/36', '37/38', '39/40', '41/42', '43/44', '45/46'];
 export const SIZES_ANCHITAS_SPORT = ['26/27', '28/29', '30/31', '32/33', '34/35', '35/36'];
 export const SIZES_ANCHITAS_LINO = ['26/27', '28/29', '30/31', '32/33', '34/35', '35/36'];
 
@@ -134,6 +135,32 @@ export const calzado = [
     color2: '#5E6B4A',
     sizeGuide: 'delta',
     tag: null,
+  },
+  {
+    id: 'delta',
+    name: 'Delta',
+    category: 'calzado',
+    sub: 'Slide · Barefoot',
+    description: 'Simple, cómoda, inconfundiblemente tuya. La slide de anCHA: pisada amplia, suela antideslizante y tu marca en cada paso.',
+    price: 64900,
+    colors: ['gris', 'chocolate', 'negro', 'natural'],
+    sizes: SIZES_DELTA,
+    images: [
+      '/images/delta-gris.jpg',
+      '/images/delta-chocolate.jpg',
+      '/images/delta-negro.jpg',
+      '/images/delta-blanco.jpg',
+    ],
+    colorImages: {
+      gris:      ['/images/delta-gris.jpg'],
+      chocolate: ['/images/delta-chocolate.jpg'],
+      negro:     ['/images/delta-negro.jpg'],
+      natural:   ['/images/delta-blanco.jpg'],
+    },
+    color1: '#9A9A96',
+    color2: '#1C1C1C',
+    sizeGuide: 'delta',
+    tag: 'Nuevo',
   },
   {
     id: 'zonda',

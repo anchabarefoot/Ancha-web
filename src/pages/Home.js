@@ -236,6 +236,7 @@ export default function Home() {
             <Link to="/mara">Mara</Link>
             <Link to="/calden">Caldén</Link>
             <Link to="/bacan">Bacán</Link>
+            <Link to="/delta">Delta</Link>
             <Link to="/zonda">Zonda</Link>
             <Link to="/anchitas">Anchitas</Link>
             <Link to="/cambios">Cambios y devoluciones</Link>

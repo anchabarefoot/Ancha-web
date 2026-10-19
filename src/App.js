@@ -12,6 +12,7 @@ import Mara from './pages/Mara';
 import Calden from './pages/Calden';
 import Bacan from './pages/Bacan';
 import Zonda from './pages/Zonda';
+import Delta from './pages/Delta';
 import Anchitas from './pages/Anchitas';
 import Returns from './pages/Returns';
 import Cart from './pages/Cart';
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="/calden" element={<Calden />} />
             <Route path="/bacan" element={<Bacan />} />
             <Route path="/zonda" element={<Zonda />} />
+            <Route path="/delta" element={<Delta />} />
             <Route path="/anchitas" element={<Anchitas />} />
             <Route path="/cambios" element={<Returns />} />
             <Route path="/carrito" element={<Cart />} />

@@ -1,5 +1,22 @@
 .returns-page { padding-top: var(--nav-h); min-height: 100vh; }
 
+.returns-diff {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+}
+.returns-diff span { color: var(--text-muted); }
+.returns-diff strong { font-weight: 600; }
+.returns-diff--paga   { background: #fff5e6; border: 1px solid #e8c07a; }
+.returns-diff--paga strong { color: #b87a10; }
+.returns-diff--favor  { background: #f0f7f0; border: 1px solid #8abf8a; }
+.returns-diff--favor strong { color: #3a7a3a; }
+.returns-diff--igual  { background: var(--surface, #f5f2ec); border: 1px solid var(--border); }
+
 .returns-hero {
   padding: 60px 0 40px;
   border-bottom: 1px solid var(--border);

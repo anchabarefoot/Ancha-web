@@ -3,7 +3,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import emailjs from '@emailjs/browser';
 import { Link } from 'react-router-dom';
-import { COLORS, SIZES_CALZADO } from '../data/products';
+import { COLORS, SIZES_CALZADO, calzado } from '../data/products';
 import './Returns.css';
 
 // ─── Configuración EmailJS ───────────────────────────────────────────────────
@@ -17,7 +17,15 @@ const EMAILJS_SERVICE_ID  = 'service_nzpelnk';
 const EMAILJS_TEMPLATE_ID = 'template_v27tu8t';
 const EMAILJS_PUBLIC_KEY  = '8nHj4qUv_chBr6Qsz';
 
-const MODELOS = ['Maitén', 'Mara', 'Caldén', 'Zonda'];
+const MODELOS = [
+  { label: 'Maitén',  id: 'maiten'  },
+  { label: 'Manso',   id: 'manso'   },
+  { label: 'Mara',    id: 'mara'    },
+  { label: 'Caldén',  id: 'calden'  },
+  { label: 'Bacán',   id: 'bacan'   },
+  { label: 'Delta',   id: 'delta'   },
+  { label: 'Zonda',   id: 'zonda'   },
+];
 const COLORES = Object.entries(COLORS).map(([k, v]) => ({ key: k, ...v }));
 const MOTIVOS = ['Talle incorrecto', 'Color incorrecto', 'Defecto de fabricación', 'Cambio de opinión', 'Otro'];
 
@@ -28,7 +36,7 @@ export default function Returns() {
   const [error, setError] = useState('');
   const [solicitud, setSolicitud] = useState('');
   const [form, setForm]   = useState({
-    modelo: '', colorTiene: '', talleTiene: '', colorQuiere: '', talleQuiere: '', motivo: '', comentario: '',
+    modeloTiene: '', modeloQuiere: '', colorTiene: '', talleTiene: '', colorQuiere: '', talleQuiere: '', motivo: '', comentario: '',
   });
 
   const f = (k, v) => setForm(p => ({ ...p, [k]: v }));
@@ -39,26 +47,35 @@ export default function Returns() {
     setStep(2);
   };
 
+  // Diferencia de precio entre modelos
+  const priceTiene  = calzado.find(p => p.id === form.modeloTiene)?.price || 0;
+  const priceQuiere = calzado.find(p => p.id === form.modeloQuiere)?.price || 0;
+  const diferencia  = priceQuiere - priceTiene;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
     setError('');
     const id = `ACH-${Math.floor(10000 + Math.random() * 90000)}`;
+    const modeloTieneLabel  = MODELOS.find(m => m.id === form.modeloTiene)?.label  || form.modeloTiene;
+    const modeloQuiereLabel = MODELOS.find(m => m.id === form.modeloQuiere)?.label || form.modeloQuiere;
     try {
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         {
-          nombre:       user.name,
-          email:        user.email,
-          modelo:       form.modelo,
-          color_tiene:  COLORS[form.colorTiene]?.label || form.colorTiene,
-          talle_tiene:  form.talleTiene,
-          color_quiere: COLORS[form.colorQuiere]?.label || form.colorQuiere,
-          talle_quiere: form.talleQuiere,
-          motivo:       form.motivo,
-          comentario:   form.comentario,
-          solicitud_id: id,
+          nombre:         user.name,
+          email:          user.email,
+          modelo:         modeloTieneLabel,
+          modelo_quiere:  modeloQuiereLabel,
+          color_tiene:    COLORS[form.colorTiene]?.label || form.colorTiene,
+          talle_tiene:    form.talleTiene,
+          color_quiere:   COLORS[form.colorQuiere]?.label || form.colorQuiere,
+          talle_quiere:   form.talleQuiere,
+          motivo:         form.motivo,
+          comentario:     form.comentario,
+          diferencia:     diferencia > 0 ? `+$${diferencia.toLocaleString('es-AR')}` : diferencia < 0 ? `-$${Math.abs(diferencia).toLocaleString('es-AR')}` : 'Sin diferencia',
+          solicitud_id:   id,
         },
         EMAILJS_PUBLIC_KEY
       );
@@ -153,19 +170,19 @@ export default function Returns() {
 
             <h2 className="returns-card__title">¿Qué querés cambiar?</h2>
 
-            {/* Modelo */}
+            {/* Modelo que tenés */}
             <div className="returns-field">
-              <label>Modelo</label>
+              <label>Modelo que tenés</label>
               <div className="returns-pills">
                 {MODELOS.map(m => (
-                  <button type="button" key={m}
-                    className={`returns-pill ${form.modelo === m ? 'active' : ''}`}
-                    onClick={() => f('modelo', m)}>{m}</button>
+                  <button type="button" key={m.id}
+                    className={`returns-pill ${form.modeloTiene === m.id ? 'active' : ''}`}
+                    onClick={() => f('modeloTiene', m.id)}>{m.label}</button>
                 ))}
               </div>
             </div>
 
-            {/* Lo que tiene */}
+            {/* Color y talle que tiene */}
             <div className="returns-row">
               <div className="returns-field">
                 <label>Color que tenés</label>
@@ -192,7 +209,19 @@ export default function Returns() {
               </div>
             </div>
 
-            {/* Lo que quiere */}
+            {/* Modelo que quiere */}
+            <div className="returns-field">
+              <label>Modelo que querés</label>
+              <div className="returns-pills">
+                {MODELOS.map(m => (
+                  <button type="button" key={m.id}
+                    className={`returns-pill ${form.modeloQuiere === m.id ? 'active' : ''}`}
+                    onClick={() => f('modeloQuiere', m.id)}>{m.label}</button>
+                ))}
+              </div>
+            </div>
+
+            {/* Color y talle que quiere */}
             <div className="returns-row">
               <div className="returns-field">
                 <label>Color que querés</label>
@@ -218,6 +247,15 @@ export default function Returns() {
                 </div>
               </div>
             </div>
+
+            {/* Diferencia de precio */}
+            {form.modeloTiene && form.modeloQuiere && form.modeloTiene !== form.modeloQuiere && (
+              <div className={`returns-diff ${diferencia > 0 ? 'returns-diff--paga' : diferencia < 0 ? 'returns-diff--favor' : 'returns-diff--igual'}`}>
+                {diferencia > 0 && <><span>Diferencia a abonar</span><strong>+${diferencia.toLocaleString('es-AR')}</strong></>}
+                {diferencia < 0 && <><span>Diferencia a tu favor</span><strong>-${Math.abs(diferencia).toLocaleString('es-AR')}</strong></>}
+                {diferencia === 0 && <><span>Sin diferencia de precio</span><strong>✓</strong></>}
+              </div>
+            )}
 
             {/* Motivo */}
             <div className="returns-field">
@@ -249,7 +287,7 @@ export default function Returns() {
               <button
                 type="submit"
                 className="returns-btn"
-                disabled={sending || !form.modelo || !form.colorTiene || !form.talleTiene || !form.colorQuiere || !form.talleQuiere || !form.motivo}
+                disabled={sending || !form.modeloTiene || !form.modeloQuiere || !form.colorTiene || !form.talleTiene || !form.colorQuiere || !form.talleQuiere || !form.motivo}
               >
                 {sending ? 'Enviando…' : 'Enviar solicitud'}
               </button>

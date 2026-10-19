@@ -2,14 +2,17 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { COLORS, formatPrice } from '../data/products';
+import BottomSheet from './BottomSheet';
 import './ProductCard.css';
 
 export default function ProductCard({ product, size = 'normal' }) {
   const { add } = useCart();
   const [imgIndex, setImgIndex] = useState(0);
   const [showSizes, setShowSizes] = useState(false);
+  const [showSheet, setShowSheet] = useState(false);
   const [added, setAdded] = useState(false);
   const [hover, setHover] = useState(false);
+  const isTouch = useRef(typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches);
   const [pos, setPos] = useState({ x: 50, y: 50 });
   const [selectedColor] = useState(null);
   const cardRef = useRef(null);
@@ -43,6 +46,15 @@ export default function ProductCard({ product, size = 'normal' }) {
     setAdded(true);
     setShowSizes(false);
     setTimeout(() => setAdded(false), 2000);
+  };
+
+  const handleQuickTap = (e) => {
+    e.preventDefault();
+    if (isTouch.current) {
+      setShowSheet(true);
+    } else {
+      setShowSizes(true);
+    }
   };
 
   const productPath = `/${product.id}`;
@@ -92,7 +104,7 @@ export default function ProductCard({ product, size = 'normal' }) {
 
         <div className={`pcard__overlay ${showSizes || hover ? 'visible' : ''}`}>
           {!showSizes ? (
-            <button className="pcard__quick" onClick={(e) => { e.preventDefault(); setShowSizes(true); }}>
+            <button className="pcard__quick" onClick={handleQuickTap}>
               Seleccionar talle
             </button>
           ) : (
@@ -132,6 +144,10 @@ export default function ProductCard({ product, size = 'normal' }) {
           {added ? '✓ Agregado' : formatPrice(product.price)}
         </p>
       </div>
+
+      {showSheet && (
+        <BottomSheet product={product} onClose={() => setShowSheet(false)} />
+      )}
     </article>
   );
 }

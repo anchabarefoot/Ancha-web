@@ -205,11 +205,16 @@ export default function Home() {
       {/* ── PILLARS ── */}
       <section className="home-pillars container">
         {[
-          { num: '01', title: 'Hecho a mano', body: 'Cada pieza construida por artesanos en Buenos Aires.' },
-          { num: '02', title: 'Materiales nobles', body: 'Cuero natural curtido al vegetal. Fibras locales seleccionadas.' },
+          { num: '01', title: 'Diseño desde la base', body: 'Inyección de TR', img: '/images/pillar-bases.png', sepia: true },
+          { num: '02', title: 'Producción y aparado', body: 'Cada pieza construida por artesanos en Buenos Aires.', img: '/images/pillar-aparado.jpg', sepia: false },
           { num: '03', title: 'Sin talles imposibles', body: 'Del 35 al 46 en calzado. Del 26 al 36 en Anchitas.' },
         ].map(p => (
           <div key={p.num} className="pillar">
+            {p.img && (
+              <div className="pillar__img-wrap">
+                <img src={p.img} alt={p.title} className={`pillar__img${p.sepia ? ' pillar__img--sepia' : ''}`} />
+              </div>
+            )}
             <span className="pillar__num">{p.num}</span>
             <h3 className="pillar__title">{p.title}</h3>
             <p className="pillar__body">{p.body}</p>

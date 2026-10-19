@@ -287,7 +287,7 @@ export default function Returns() {
               <button
                 type="submit"
                 className="returns-btn"
-                disabled={sending || !form.modeloTiene || !form.modeloQuiere || !form.colorTiene || !form.talleTiene || !form.colorQuiere || !form.talleQuiere || !form.motivo}
+                disabled={sending || !form.modeloTiene || !form.modeloQuiere || !form.talleTiene || !form.talleQuiere || !form.motivo}
               >
                 {sending ? 'Enviando…' : 'Enviar solicitud'}
               </button>

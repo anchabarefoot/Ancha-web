@@ -10,6 +10,7 @@ const LINKS = [
   { to: '/mara',        label: 'Mara' },
   { to: '/calden',      label: 'Caldén' },
   { to: '/bacan',        label: 'Bacán' },
+  { to: '/delta',        label: 'Delta' },
   { to: '/zonda',       label: 'Zonda' },
   { to: '/anchitas',    label: 'Anchitas' },
   { to: '/cambios',     label: 'Cambios' },

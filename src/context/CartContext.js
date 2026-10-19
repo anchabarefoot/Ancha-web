@@ -5,12 +5,13 @@ const CartContext = createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD': {
-      const exists = state.items.find(i => i.id === action.item.id && i.size === action.item.size);
-      if (exists) return { ...state, items: state.items.map(i => i.id === action.item.id && i.size === action.item.size ? { ...i, qty: i.qty + 1 } : i) };
+      const match = i => i.id === action.item.id && i.size === action.item.size && i.color === action.item.color;
+      const exists = state.items.find(match);
+      if (exists) return { ...state, items: state.items.map(i => match(i) ? { ...i, qty: i.qty + 1 } : i) };
       return { ...state, items: [...state.items, { ...action.item, qty: 1 }] };
     }
-    case 'REMOVE': return { ...state, items: state.items.filter(i => !(i.id === action.id && i.size === action.size)) };
-    case 'QTY': return { ...state, items: state.items.map(i => i.id === action.id && i.size === action.size ? { ...i, qty: action.qty } : i) };
+    case 'REMOVE': return { ...state, items: state.items.filter(i => !(i.id === action.id && i.size === action.size && i.color === action.color)) };
+    case 'QTY': return { ...state, items: state.items.map(i => i.id === action.id && i.size === action.size && i.color === action.color ? { ...i, qty: action.qty } : i) };
     case 'CLEAR': return { ...state, items: [] };
     default: return state;
   }
@@ -19,8 +20,8 @@ const reducer = (state, action) => {
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, { items: [] });
   const add = item => dispatch({ type: 'ADD', item });
-  const remove = (id, size) => dispatch({ type: 'REMOVE', id, size });
-  const setQty = (id, size, qty) => dispatch({ type: 'QTY', id, size, qty });
+  const remove = (id, size, color) => dispatch({ type: 'REMOVE', id, size, color });
+  const setQty = (id, size, color, qty) => dispatch({ type: 'QTY', id, size, color, qty });
   const clear = () => dispatch({ type: 'CLEAR' });
   const total = state.items.reduce((a, i) => a + i.price * i.qty, 0);
   const count = state.items.reduce((a, i) => a + i.qty, 0);

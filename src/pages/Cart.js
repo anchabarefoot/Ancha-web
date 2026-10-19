@@ -33,12 +33,13 @@ export default function Cart() {
         body: JSON.stringify({
           items: items.map(i => ({
             id:    i.id,
-            name:  i.name,
+            name:  `${i.name}${i.color ? ` (${i.color})` : ''} — Talle ${i.size}`,
             color: i.color,
             size:  i.size,
             price: i.price,
             qty:   i.qty,
           })),
+          shipping,
         }),
       });
       const data = await res.json();
@@ -118,12 +119,12 @@ export default function Cart() {
               </div>
               <div className="cart-row__right">
                 <div className="cart-qty">
-                  <button onClick={() => item.qty > 1 ? setQty(item.id, item.size, item.qty - 1) : remove(item.id, item.size)}>−</button>
+                  <button onClick={() => item.qty > 1 ? setQty(item.id, item.size, item.color, item.qty - 1) : remove(item.id, item.size, item.color)}>−</button>
                   <span>{item.qty}</span>
-                  <button onClick={() => setQty(item.id, item.size, item.qty + 1)}>+</button>
+                  <button onClick={() => setQty(item.id, item.size, item.color, item.qty + 1)}>+</button>
                 </div>
                 <p className="cart-row__price">{formatPrice(item.price * item.qty)}</p>
-                <button className="cart-row__del" onClick={() => remove(item.id, item.size)}>×</button>
+                <button className="cart-row__del" onClick={() => remove(item.id, item.size, item.color)}>×</button>
               </div>
             </div>
           ))}

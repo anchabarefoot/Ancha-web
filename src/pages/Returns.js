@@ -81,8 +81,9 @@ export default function Returns() {
       );
       setSolicitud(id);
       setStep(3);
-    } catch {
-      setError('Hubo un error al enviar. Escribinos directamente a viviancha.ar@gmail.com');
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError(`Error: ${err?.text || err?.message || JSON.stringify(err)}`);
     } finally {
       setSending(false);
     }

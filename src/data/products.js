@@ -169,7 +169,7 @@ export const calzado = [
     sub: 'Sandalia',
     description: 'Aire libre para tus pasos. Una sandalia esencial, liviana y sin estructuras innecesarias.',
     price: 74900,
-    colors: ['gris', 'natural', 'mostaza', 'chocolate', 'negro', 'verde', 'suela'],
+    colors: ['gris', 'natural', 'mostaza', 'verde'],
     sizes: SIZES_CALZADO,
     images: ['/images/zonda-beige.jpg', '/images/zonda-mostaza.jpg', '/images/zonda-verde.jpg', '/images/zonda-gris.jpg'],
     colorImages: {

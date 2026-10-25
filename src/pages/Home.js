@@ -128,7 +128,6 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="home-hero" style={{ backgroundImage: 'url(/images/maiten-natural.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <img src="/images/logo-ancha.png" alt="anCHA" className="home-hero__logo-img" />
-        <div className="home-hero__eyebrow">Otoño · Invierno 2025</div>
         <h1 className="home-hero__title">
           VIVI anCHA
         </h1>

@@ -28,7 +28,6 @@ export default function Indumentaria() {
     <div className="shop-page">
       <div className="shop-hero">
         <div className="container">
-          <p className="shop-eye">Otoño · Invierno 2025</p>
           <h1 className="shop-title">Indumentaria</h1>
           <p className="shop-count">{items.length} piezas</p>
         </div>

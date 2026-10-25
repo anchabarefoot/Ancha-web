@@ -113,8 +113,12 @@ export default function Returns() {
             </div>
           </div>
           <p className="returns-shipping__hint">
-            Guardá el calzado en su caja con estas medidas. Por mail te mandamos la dirección
-            y el código para despacharlo en cualquier sucursal de Andreani.
+            Guardá el calzado en su caja con estas medidas y despachalo en cualquier sucursal de Andreani a:
+          </p>
+          <p className="returns-shipping__address">
+            <strong>anCHA · Devoluciones</strong><br />
+            Esteban Merlo 5164, Caseros, Prov. de Buenos Aires<br />
+            Ref.: N° de solicitud {solicitud}
           </p>
         </div>
 

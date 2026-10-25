@@ -445,3 +445,11 @@
   .returns-card { padding: 24px 20px; }
   .returns-step__label { display: none; }
 }
+
+.returns-shipping__address {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  line-height: 1.7;
+  text-align: center;
+}

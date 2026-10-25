@@ -242,7 +242,7 @@ export default function Home() {
             <Link to="/cambios">Cambios y devoluciones</Link>
           </div>
           <div className="home-footer__social">
-            <a href="https://instagram.com/viviancha" target="_blank" rel="noreferrer">@viviancha</a>
+            <a href="https://instagram.com/viviancha.ar" target="_blank" rel="noreferrer">@viviancha.ar</a>
           </div>
         </div>
         <div className="home-footer__copy container">

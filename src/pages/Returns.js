@@ -112,15 +112,10 @@ export default function Returns() {
               <span>Largo</span><strong>30 cm</strong>
             </div>
           </div>
-          <p className="returns-shipping__hint">Usá estos medidas cuando generes el envío en Andreani.</p>
-          <a
-            href="https://www.andreani.com/personas/envios"
-            target="_blank"
-            rel="noreferrer"
-            className="returns-btn returns-btn--outline"
-          >
-            Generar envío en Andreani →
-          </a>
+          <p className="returns-shipping__hint">
+            Guardá el calzado en su caja con estas medidas. Por mail te mandamos la dirección
+            y el código para despacharlo en cualquier sucursal de Andreani.
+          </p>
         </div>
 
         <div className="returns-success__actions">
@@ -308,7 +303,7 @@ export default function Returns() {
           <div className="returns-info__block">
             <h3>¿Tenés dudas?</h3>
             <p>Escribinos a <a href="mailto:viviancha.ar@gmail.com">viviancha.ar@gmail.com</a><br />
-            o por Instagram <a href="https://instagram.com/viviancha" target="_blank" rel="noreferrer">@viviancha</a></p>
+            o por Instagram <a href="https://instagram.com/viviancha.ar" target="_blank" rel="noreferrer">@viviancha.ar</a></p>
           </div>
         </div>
       </div>

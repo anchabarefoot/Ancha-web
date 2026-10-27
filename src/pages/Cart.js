@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 import { useCart } from '../context/CartContext';
 import { formatPrice } from '../data/products';
 import './Cart.css';
+
+const EMAILJS_SERVICE_ID  = 'service_nzpelnk';
+const EMAILJS_TEMPLATE_ID = 'template_oaqxvw9';
+const EMAILJS_PUBLIC_KEY  = '8nHj4qUv_chBr6Qsz';
 
 function MPLogo() {
   return (
@@ -56,6 +61,23 @@ export default function Cart() {
   };
 
   // ── Regreso de Mercado Pago ──
+  const mailSent = useRef(false);
+  useEffect(() => {
+    if (pagoStatus === 'ok' && items.length > 0 && !mailSent.current) {
+      mailSent.current = true;
+      const orderId = `ACH-${Math.floor(10000 + Math.random() * 90000)}`;
+      const itemsList = items.map(i => `${i.name} (Talle ${i.size}${i.color ? `, ${i.color}` : ''}) x${i.qty} — ${formatPrice(i.price * i.qty)}`).join('\n');
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        order_id: orderId,
+        email:    '',
+        orders:   itemsList,
+        'cost.shipping': shipping ? formatPrice(shipping) : 'Gratis',
+        'cost.tax':      '$0',
+        'cost.total':    formatPrice(grandTotal),
+      }, EMAILJS_PUBLIC_KEY).catch(console.error);
+    }
+  }, [pagoStatus]); // eslint-disable-line
+
   if (pagoStatus === 'ok') return (
     <div className="cart-page">
       <div className="cart-success container">

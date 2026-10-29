@@ -9,7 +9,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { items, payer } = req.body;
+  const { items, shipping, payer } = req.body;
 
   if (!items || !Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ error: 'Items requeridos' });
@@ -24,18 +24,27 @@ module.exports = async function handler(req, res) {
   try {
     const result = await preference.create({
       body: {
-        items: items.map(item => ({
-          id:          item.id,
-          title:       `${item.name} · ${item.color || ''} · Talle ${item.size}`,
-          quantity:    item.qty || 1,
-          unit_price:  item.price,
-          currency_id: 'ARS',
-        })),
+        items: [
+          ...items.map(item => ({
+            id:          item.id,
+            title:       `${item.name} · ${item.color || ''} · Talle ${item.size}`,
+            quantity:    item.qty || 1,
+            unit_price:  item.price,
+            currency_id: 'ARS',
+          })),
+          ...(shipping > 0 ? [{
+            id:          'envio',
+            title:       'Envío',
+            quantity:    1,
+            unit_price:  shipping,
+            currency_id: 'ARS',
+          }] : []),
+        ],
         payer: payer || {},
         back_urls: {
-          success: `${process.env.SITE_URL || 'https://ancha-web.vercel.app'}/carrito?pago=ok`,
-          failure: `${process.env.SITE_URL || 'https://ancha-web.vercel.app'}/carrito?pago=error`,
-          pending: `${process.env.SITE_URL || 'https://ancha-web.vercel.app'}/carrito?pago=pendiente`,
+          success: `${process.env.SITE_URL || 'https://ancha.com.ar'}/carrito?pago=ok`,
+          failure: `${process.env.SITE_URL || 'https://ancha.com.ar'}/carrito?pago=error`,
+          pending: `${process.env.SITE_URL || 'https://ancha.com.ar'}/carrito?pago=pendiente`,
         },
         auto_return: 'approved',
         statement_descriptor: 'anCHA',

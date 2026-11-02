@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
 const CartContext = createContext();
 
@@ -17,8 +17,17 @@ const reducer = (state, action) => {
   }
 };
 
+// El carrito se guarda en el navegador para que siga ahí al volver de Mercado Pago
+const load = () => {
+  try { return JSON.parse(localStorage.getItem('ancha-cart')) || { items: [] }; }
+  catch { return { items: [] }; }
+};
+
 export function CartProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, { items: [] });
+  const [state, dispatch] = useReducer(reducer, undefined, load);
+  useEffect(() => {
+    try { localStorage.setItem('ancha-cart', JSON.stringify(state)); } catch { /* sin almacenamiento */ }
+  }, [state]);
   const add = item => dispatch({ type: 'ADD', item });
   const remove = (id, size, color) => dispatch({ type: 'REMOVE', id, size, color });
   const setQty = (id, size, color, qty) => dispatch({ type: 'QTY', id, size, color, qty });

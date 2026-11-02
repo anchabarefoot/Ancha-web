@@ -74,7 +74,9 @@ export default function Cart() {
         'cost.shipping': shipping ? formatPrice(shipping) : 'Gratis',
         'cost.tax':      '$0',
         'cost.total':    formatPrice(grandTotal),
-      }, EMAILJS_PUBLIC_KEY).catch(console.error);
+      }, EMAILJS_PUBLIC_KEY)
+        .catch(console.error)
+        .finally(() => clear());
     }
   }, [pagoStatus]); // eslint-disable-line
 

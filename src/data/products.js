@@ -47,10 +47,15 @@ export const calzado = [
     id: 'manso',
     name: 'Manso',
     category: 'calzado',
-    sub: 'Náutico',
-    description: 'El clásico náutico de anCHA. Cuero curtido al vegetal, suela cosida a mano.',
+    sub: 'El caballo ganador',
+    description: 'Agarramos la alpargata de siempre y le sacamos lo que le sobraba.',
+    longDescription: [
+      'Agarramos la alpargata de siempre y le sacamos lo que le sobraba: la costura que se abre y la suela que no aguanta un verano. Le dejamos la trenza, pero en goma. Le pusimos un elástico ancho para que se calce sola.',
+      'Manso es el que no hay que domar: entra, se acomoda y se queda. Va igual a la oficina, a la vereda o a la costa, sin pedirte que te vistas para él.',
+      'No es la alpargata de antes ni quiere ser zapatilla. Es otra cosa. Es Manso.',
+    ],
     price: 89900,
-    colors: ['jean', 'negro'],
+    colors: ['jean', 'negro', 'gris', 'bordo', 'verde', 'natural'],
     sizes: SIZES_CALZADO,
     images: [
       '/images/manso-jean.jpg',

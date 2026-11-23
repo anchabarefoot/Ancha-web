@@ -51,7 +51,10 @@ export default function ProductPage({ product }) {
         <p className="pp-sub">{product.sub}</p>
         <h1 className="pp-name">{product.name}</h1>
         <p className="pp-price">{formatPrice(product.price)}</p>
-        <p className="pp-desc">{product.description}</p>
+        {product.longDescription
+          ? product.longDescription.map((p, i) => <p key={i} className="pp-desc">{p}</p>)
+          : <p className="pp-desc">{product.description}</p>
+        }
 
         {/* Colors */}
         {product.colors && product.colors.length > 0 && (

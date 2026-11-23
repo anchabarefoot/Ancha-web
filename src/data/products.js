@@ -48,12 +48,7 @@ export const calzado = [
     name: 'Manso',
     category: 'calzado',
     sub: 'El caballo ganador',
-    description: 'Agarramos la alpargata de siempre y le sacamos lo que le sobraba.',
-    longDescription: [
-      'Agarramos la alpargata de siempre y le sacamos lo que le sobraba: la costura que se abre y la suela que no aguanta un verano. Le dejamos la trenza, pero en goma. Le pusimos un elástico ancho para que se calce sola.',
-      'Manso es el que no hay que domar: entra, se acomoda y se queda. Va igual a la oficina, a la vereda o a la costa, sin pedirte que te vistas para él.',
-      'No es la alpargata de antes ni quiere ser zapatilla. Es otra cosa. Es Manso.',
-    ],
+    description: 'La alpargata renovada ....sin pedir permiso. Trenza en goma, elástico que se calza solo y ninguna gana de encajar. Manso, el caballo ganador.',
     price: 89900,
     colors: ['jean', 'negro', 'gris', 'bordo', 'verde', 'natural'],
     sizes: SIZES_CALZADO,

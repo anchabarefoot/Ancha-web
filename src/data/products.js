@@ -48,7 +48,7 @@ export const calzado = [
     name: 'Manso',
     category: 'calzado',
     sub: 'El caballo ganador',
-    description: 'La alpargata renovada ....sin pedir permiso. Trenza en goma, elástico que se calza solo y ninguna gana de encajar. Manso, el caballo ganador.',
+    description: 'La alpargata ayornada ....sin pedir permiso. Trenza en goma, elástico que se calza solo y ninguna gana de encajar. Manso, el caballo ganador.',
     price: 89900,
     colors: ['jean', 'negro', 'gris', 'bordo', 'verde', 'natural'],
     sizes: SIZES_CALZADO,
